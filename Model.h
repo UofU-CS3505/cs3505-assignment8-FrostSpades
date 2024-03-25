@@ -18,12 +18,34 @@ class Model : public QObject
     Q_OBJECT
 
 private:
+    ///
+    /// \brief size it stores the width/height of the squared canvas
+    /// When the user creates a project they are offered a choice on resolution. That choice is stored here for QImage settings
+    ///
     int size;
+
+    ///
+    /// \brief frames is a map from the key (which is the id of the QImage) to a QImage.
+    ///
     QMap<int, QImage> frames;
+
+    ///
+    /// \brief saveFilePath just stores where the user would to save.
+    ///
     QString saveFilePath;
 
+    ///
+    /// \brief imageToBase64 helper method for loading images to json
+    /// \param image    the image that wants to be saved
+    /// \return     json serialized version of that image.
+    ///
     QString imageToBase64(const QImage &image);
 
+    ///
+    /// \brief base64ToImage helper method for loading QImages from json.
+    /// \param base64   the json serialization part of an image
+    /// \return     The QImage of the serialization.
+    ///
     QImage base64ToImage(const QString &base64);
 
 public:
