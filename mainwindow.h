@@ -88,6 +88,8 @@ public slots:
      */
     void onLoadFileSubmit(QString path);
 
+    void receiveFrames(QImage frames[]);
+
 private:
     Ui::MainWindow *ui;
     QStackedWidget *allPages;
@@ -123,5 +125,13 @@ private:
     void setGlobalPalette();
 
     void setModelConnections();
+
+signals:
+    void addFrame();
+    void deleteFrame(int id);
+    void drawOnFrame(int id, int x, int y, int a, int r, int g, int b);
+    void getData();
+    void reorderFrames(int frameOneID, int frameTwoID);
+    void saveData();
 };
 #endif // MAINWINDOW_H

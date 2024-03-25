@@ -51,29 +51,111 @@ private:
 public:
     explicit Model(QObject *parent = nullptr);
 
+    /**
+     * @brief Model
+     * Default Constructor
+     */
     Model();
 
+    /**
+     * @brief Model
+     * Creates a new model object with
+     * name, size, and path variables set.
+     *
+     * @param name the name of the project
+     * @param size the size of the project
+     * @param path the path of the project
+     */
     Model(QString name, int size, QString path);
+
+    /**
+     * @brief Model
+     * Creates a new model object based
+     * on a given json .ssp file.
+     *
+     * @param filePath
+     */
     Model(QString &filePath);
 
+    /**
+     * Default Deconstructor
+     */
     ~Model();
 
     // The user wants to create a project from scratch. An empty project is created into a Json and added to filePath.
+    // TO BE REMOVED LATER
     void createModel(int size, QString name, const QString &filePath);
 
     // The user wants to load a previous project. The project is saved in a Json at that filePath.
     // Deserialize the json and send it to view.
+    // TO BE REMOVED LATER
     void loadModel(const QString &filePath);
 
-    // The user wants to save the current project state. Update the json.
+public slots:
+    /**
+     * @brief addFrame
+     * Inserts a frame at the end
+     * of the map.
+     */
+    void addFrame();
+
+    /**
+     * @brief deleteFrame
+     * Deletes a frame at the given id
+     * and resets all the ids to their
+     * position.
+     *
+     * @param id the id of the frame to delete
+     */
+    void deleteFrame(int id);
+
+    /**
+     * @brief changePixelData
+     * Changes the pixel of the frame at the
+     * given id, at the given location (x, y)
+     * to the given argb value.
+     *
+     * @param id the id of the frame
+     * @param x the x location
+     * @param y the y location
+     * @param a alpha value
+     * @param r red value
+     * @param g green value
+     * @param b blue value
+     */
+    void changePixelData(int id, int x, int y, int a, int r, int g, int b);
+
+    /**
+     * @brief returnFrames
+     * Trigger the sending of the array of frames
+     * to the view in the correct ID order.
+     */
+    void returnFrames();
+
+    /**
+     * @brief switchFrames
+     * Switches the frames at the given
+     * id's.
+     *
+     * @param frameOneID
+     * @param frameTwoID
+     */
+    void switchFrames(int frameOneID, int frameTwoID);
+
+    /**
+     * @brief saveModel
+     * Saves the model to the given file path.
+     */
     void saveModel();
 
-public slots:
-    void acceptNewFile(QString name, int size, QString path);
-
-    void acceptLoadFile(QString path);
-
 signals:
+    /**
+     * @brief sendFrames
+     * Send array of frames to view
+     *
+     * @param frames the array of frames to send
+     */
+    void sendFrames(QImage frames[]);
 };
 
 #endif // MODEL_H

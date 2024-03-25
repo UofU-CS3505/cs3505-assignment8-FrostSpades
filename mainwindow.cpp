@@ -122,7 +122,14 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
 }
 
 void MainWindow::setModelConnections() {
+    connect(this, &MainWindow::deleteFrame, model, &Model::deleteFrame);
+    connect(this, &MainWindow::addFrame, model, &Model::addFrame);
+    connect(this, &MainWindow::drawOnFrame, model, &Model::changePixelData);
+    connect(this, &MainWindow::getData, model, &Model::returnFrames);
+    connect(this, &MainWindow::reorderFrames, model, &Model::switchFrames);
+    connect(this, &MainWindow::saveData, model, &Model::saveModel);
 
+    connect(model, &Model::sendFrames, this, &MainWindow::receiveFrames);
 }
 
 void MainWindow::onLoadFileSubmit(QString path)
