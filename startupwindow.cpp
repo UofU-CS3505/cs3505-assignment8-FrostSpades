@@ -13,7 +13,6 @@ StartupWindow::~StartupWindow()
     delete ui;
 }
 
-
 void StartupWindow::on_newButton_clicked()
 {
     emit newButtonClicked();
@@ -23,4 +22,3 @@ void StartupWindow::on_loadButton_clicked()
 {
     emit loadButtonClicked();
 }
-

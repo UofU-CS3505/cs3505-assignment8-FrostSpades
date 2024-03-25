@@ -1,6 +1,6 @@
 #include "loadfilewindow.h"
-#include "ui_loadfilewindow.h"
 #include <QFileDialog>
+#include "ui_loadfilewindow.h"
 
 LoadFileWindow::LoadFileWindow(QWidget *parent)
     : QDialog(parent)
@@ -19,11 +19,11 @@ void LoadFileWindow::on_sourceButton_clicked()
     QString directory = QFileDialog::getExistingDirectory(nullptr,
                                                           "Directory Selection",
                                                           QDir::homePath(),
-                                                          QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+                                                          QFileDialog::ShowDirsOnly
+                                                              | QFileDialog::DontResolveSymlinks);
 
     ui->textPath->setText(directory);
 }
-
 
 void LoadFileWindow::on_submitButton_clicked()
 {
@@ -34,7 +34,7 @@ void LoadFileWindow::on_submitButton_clicked()
 
     QDir directory(ui->textPath->displayText());
 
-    if (!directory.exists()){
+    if (!directory.exists()) {
         emit error("Directory does not exist");
         return;
     }
@@ -42,12 +42,12 @@ void LoadFileWindow::on_submitButton_clicked()
     emit submitButtonClicked(ui->textPath->displayText());
 }
 
-
 void LoadFileWindow::on_cancelButton_clicked()
 {
     emit cancelButtonClicked();
 }
 
-void LoadFileWindow::reset() {
+void LoadFileWindow::reset()
+{
     ui->textPath->setText(QString(""));
 }

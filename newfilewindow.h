@@ -82,5 +82,4 @@ signals:
     void error(QString errorMessage);
 };
 
-
 #endif // NEWFILEWINDOW_H

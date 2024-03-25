@@ -13,6 +13,7 @@
 #include "newfilewindow.h"
 #include "spriteeditorwindow.h"
 #include "startupwindow.h"
+#include "Model.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -94,6 +95,7 @@ private:
     NewFileWindow *newFileWindow;
     SpriteEditorWindow *spriteEditorWindow;
     StartupWindow *startupWindow;
+    Model *model;
 
     /**
      * @brief openStartupWindow
@@ -119,5 +121,7 @@ private:
      * for each of the elements.
      */
     void setGlobalPalette();
+
+    void setModelConnections();
 };
 #endif // MAINWINDOW_H

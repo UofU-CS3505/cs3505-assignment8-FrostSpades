@@ -1,6 +1,6 @@
 #include "newfilewindow.h"
-#include "ui_newfilewindow.h"
 #include <QFileDialog>
+#include "ui_newfilewindow.h"
 
 NewFileWindow::NewFileWindow(QWidget *parent)
     : QDialog(parent)
@@ -19,7 +19,8 @@ void NewFileWindow::on_cancelButton_clicked()
     emit cancelButtonClicked();
 }
 
-void NewFileWindow::reset() {
+void NewFileWindow::reset()
+{
     ui->sizeBox->setValue(8);
     ui->textName->setText(QString(""));
     ui->textPath->setText(QString(""));
@@ -30,11 +31,11 @@ void NewFileWindow::on_pushButton_clicked()
     QString directory = QFileDialog::getExistingDirectory(nullptr,
                                                           "Directory Selection",
                                                           QDir::homePath(),
-                                                          QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+                                                          QFileDialog::ShowDirsOnly
+                                                              | QFileDialog::DontResolveSymlinks);
 
     ui->textPath->setText(directory);
 }
-
 
 void NewFileWindow::on_pushButton_2_clicked()
 {
@@ -51,11 +52,12 @@ void NewFileWindow::on_pushButton_2_clicked()
 
     QDir directory(ui->textPath->displayText());
 
-    if (!directory.exists()){
+    if (!directory.exists()) {
         emit error("Directory does not exist");
         return;
     }
 
-    emit submitButtonClicked(ui->textName->displayText(), ui->sizeBox->value(), ui->textPath->displayText());
+    emit submitButtonClicked(ui->textName->displayText(),
+                             ui->sizeBox->value(),
+                             ui->textPath->displayText());
 }
-
