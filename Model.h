@@ -1,3 +1,10 @@
+/// Model Serializer, Deserializer, header
+/// By Joshua Brody, Jacob Xu
+/// CS 3505 Assignment 7-8 Sprite Editor
+/// 3/2024
+///
+
+
 #ifndef MODEL_H
 #define MODEL_H
 
@@ -11,7 +18,6 @@
 #include <QObject>
 #include <QVector>
 
-#include <iostream>
 
 class Model : public QObject
 {
@@ -48,10 +54,12 @@ private:
     ///
     QImage base64ToImage(const QString &base64);
 
+    void prepareImagesToSend();
+
 public:
     explicit Model(QObject *parent = nullptr);
 
-    /**
+    /*
      * @brief Model
      * Default Constructor
      */
@@ -81,15 +89,6 @@ public:
      * Default Deconstructor
      */
     ~Model();
-
-    // The user wants to create a project from scratch. An empty project is created into a Json and added to filePath.
-    // TO BE REMOVED LATER
-    void createModel(int size, QString name, const QString &filePath);
-
-    // The user wants to load a previous project. The project is saved in a Json at that filePath.
-    // Deserialize the json and send it to view.
-    // TO BE REMOVED LATER
-    void loadModel(const QString &filePath);
 
 public slots:
     /**

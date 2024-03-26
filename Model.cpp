@@ -1,4 +1,8 @@
-
+/// Model Serializer, Deserializer, cpp
+/// By Joshua Brody, Jacob Xu
+/// CS 3505 Assignment 7-8 Sprite Editor
+/// 3/2024
+///
 
 #include "Model.h"
 
@@ -9,11 +13,21 @@ Model::Model(QObject *parent)
     size = 0;
 }
 
+
+Model::Model(){
+    size = 0;
+}
+
+
+
+
 // The user wants to create a project from scratch. An empty project is created into a Json and aded to filePath.
-void Model::createModel(int thisSize, QString name, const QString &filePath)
+Model::Model(QString name, int thisSize, QString filePath)
 {
     // Populate the Model
     size = thisSize;
+    QImage starterImage(size, size, QImage::Format_RGBA16FPx4);
+    frames.insert(0, starterImage);
 
     // Create JSON object
     QJsonObject jsonObject;
@@ -30,11 +44,16 @@ void Model::createModel(int thisSize, QString name, const QString &filePath)
     QJsonDocument jsonDoc(jsonObject);
     file.write(jsonDoc.toJson());
     file.close();
+
+    saveModel();
+
+    // TODO: send open empty frame to view
+
 }
 
 // The user wants to load a previous project. The project is saved in a Json at that filePath.
 // Deserialize the json and send it to view.
-void Model::loadModel(const QString &filePath)
+Model::Model(QString &filePath)
 {
     // Read JSON file
     QFile file(filePath);
@@ -62,6 +81,8 @@ void Model::loadModel(const QString &filePath)
     }
 
     file.close();
+
+    // TODO: Open frames to view
 }
 
 // The user wants to save the current project state. Update the json.
@@ -106,13 +127,55 @@ QImage Model::base64ToImage(const QString &base64)
     return image;
 }
 
-// Slots
-void Model::acceptNewFile(QString name, int size, QString path)
-{
-    createModel(size, name, path);
+
+
+
+//  ------- Slots --------
+
+void Model::addFrame(){
+    int currentNumberOfFrames = frames.count();
+    if(!frames.contains(currentNumberOfFrames)){
+        QImage newFrame(size, size, QImage::Format_RGBA16FPx4);
+        frames[currentNumberOfFrames] = newFrame;
+    }
+
+    prepareImagesToSend();
 }
 
-void Model::acceptLoadFile(QString path)
-{
-    loadModel(path);
+
+void Model::deleteFrame(int id){
+    frames.remove(id);
 }
+
+void Model::changePixelData(int id, int x, int y, int a, int r, int g, int b){
+    // VASKO HOW DID YOU USE QIMAGE
+    QImage daFrameImage = frames[id];
+
+    daFrameImage.setPixel(x, y, qRgba(r, g, b, a));
+}
+
+void Model::returnFrames(){
+    prepareImagesToSend();
+}
+
+void Model::switchFrames(int frameOneID, int frameTwoID){
+    QImage saveSwitchingFrame = frames[frameOneID];
+    frames[frameOneID] = frames[frameTwoID];
+    frames[frameTwoID] = saveSwitchingFrame;
+}
+
+void Model::prepareImagesToSend(){
+    QImage* frameArray = new QImage[frames.count()];
+    for (auto it = frames.begin(); it != frames.end(); ++it) {
+        frameArray[it.key()] = it.value().copy();
+    }
+    emit sendFrames(frameArray);
+
+}
+
+
+
+
+
+
+
