@@ -13,14 +13,12 @@ Model::Model(QObject *parent)
     size = 0;
 }
 
-
-Model::Model(){
+Model::Model()
+{
     size = 0;
 }
 
-Model::~Model() {
-
-}
+Model::~Model() {}
 
 // The user wants to create a project from scratch. An empty project is created into a Json and aded to filePath.
 Model::Model(QString name, int thisSize, QString filePath)
@@ -49,7 +47,6 @@ Model::Model(QString name, int thisSize, QString filePath)
     saveModel();
 
     // TODO: send open empty frame to view
-
 }
 
 // The user wants to load a previous project. The project is saved in a Json at that filePath.
@@ -128,14 +125,12 @@ QImage Model::base64ToImage(const QString &base64)
     return image;
 }
 
-
-
-
 //  ------- Slots --------
 
-void Model::addFrame(){
+void Model::addFrame()
+{
     int currentNumberOfFrames = frames.count();
-    if(!frames.contains(currentNumberOfFrames)){
+    if (!frames.contains(currentNumberOfFrames)) {
         QImage newFrame(size, size, QImage::Format_RGBA16FPx4);
         frames[currentNumberOfFrames] = newFrame;
     }
@@ -143,40 +138,36 @@ void Model::addFrame(){
     prepareImagesToSend();
 }
 
-
-void Model::deleteFrame(int id){
+void Model::deleteFrame(int id)
+{
     frames.remove(id);
 }
 
-void Model::changePixelData(int id, int x, int y, int a, int r, int g, int b){
+void Model::changePixelData(int id, int x, int y, int a, int r, int g, int b)
+{
     // VASKO HOW DID YOU USE QIMAGE
     QImage daFrameImage = frames[id];
 
     daFrameImage.setPixel(x, y, qRgba(r, g, b, a));
 }
 
-void Model::returnFrames(){
+void Model::returnFrames()
+{
     prepareImagesToSend();
 }
 
-void Model::switchFrames(int frameOneID, int frameTwoID){
+void Model::switchFrames(int frameOneID, int frameTwoID)
+{
     QImage saveSwitchingFrame = frames[frameOneID];
     frames[frameOneID] = frames[frameTwoID];
     frames[frameTwoID] = saveSwitchingFrame;
 }
 
-void Model::prepareImagesToSend(){
-    QImage* frameArray = new QImage[frames.count()];
+void Model::prepareImagesToSend()
+{
+    QImage *frameArray = new QImage[frames.count()];
     for (auto it = frames.begin(); it != frames.end(); ++it) {
         frameArray[it.key()] = it.value().copy();
     }
     emit sendFrames(frameArray);
-
 }
-
-
-
-
-
-
-

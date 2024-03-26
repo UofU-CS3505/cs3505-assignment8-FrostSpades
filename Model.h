@@ -4,7 +4,6 @@
 /// 3/2024
 ///
 
-
 #ifndef MODEL_H
 #define MODEL_H
 
@@ -17,7 +16,6 @@
 #include <QJsonObject>
 #include <QObject>
 #include <QVector>
-
 
 class Model : public QObject
 {

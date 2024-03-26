@@ -9,11 +9,11 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
+#include "Model.h"
 #include "loadfilewindow.h"
 #include "newfilewindow.h"
 #include "spriteeditorwindow.h"
 #include "startupwindow.h"
-#include "Model.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

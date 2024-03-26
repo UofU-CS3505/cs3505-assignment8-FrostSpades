@@ -2,27 +2,30 @@
 #define DRAWWINDOW_H
 
 #include <QWidget>
+#include <QVector>
+#include <QMouseEvent>
+#include <QPainter>
 
-namespace Ui {
-class DrawWindow;
-}
-
-class DrawWindow : public QWidget
-{
+class DrawWindow : public QWidget {
     Q_OBJECT
-
 public:
     explicit DrawWindow(QWidget *parent = nullptr);
-    ~DrawWindow();
+
+    void setPixel(int x, int y, int r, int g, int b, int alpha);
+    void deletePixel(int x, int y);
+    QColor getPixel(int x, int y);
+    QImage getImageData();
+
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void paintEvent(QPaintEvent *event) override;
 
 private:
-    Ui::DrawWindow *ui;
-
-public slots:
-    void updateImages(QImage frames[]);
-
-signals:
-    void click(int ID, int x, int y);
+    QImage image;
+    QColor currentColor;
+    int scale; // Scale factor for pixels
+    int size; // size of image
 };
 
-#endif // DRAWWINDOW_H
+#endif // PIXELEDITORWIDGET_H

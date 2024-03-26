@@ -28,7 +28,6 @@ private:
 public slots:
 
 signals:
-
 };
 
 #endif // SPRITEEDITORWINDOW_H

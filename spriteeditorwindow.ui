@@ -29,14 +29,17 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Sprite Editor Window&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="DrawWindow" name="widget" native="true">
+  <widget class="DrawWindow" name="DrawWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>50</y>
-     <width>291</width>
-     <height>201</height>
+     <x>220</x>
+     <y>180</y>
+     <width>320</width>
+     <height>320</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgb(0, 0, 255)</string>
    </property>
   </widget>
  </widget>

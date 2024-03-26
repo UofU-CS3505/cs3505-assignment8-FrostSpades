@@ -120,11 +120,10 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
     setModelConnections();
 }
 
-void MainWindow::receiveFrames(QImage frames[]) {
+void MainWindow::receiveFrames(QImage frames[]) {}
 
-}
-
-void MainWindow::setModelConnections() {
+void MainWindow::setModelConnections()
+{
     connect(this, &MainWindow::deleteFrame, model, &Model::deleteFrame);
     connect(this, &MainWindow::addFrame, model, &Model::addFrame);
     connect(this, &MainWindow::drawOnFrame, model, &Model::changePixelData);
