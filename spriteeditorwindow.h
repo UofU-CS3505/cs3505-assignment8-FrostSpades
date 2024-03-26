@@ -24,6 +24,11 @@ public:
 
 private:
     Ui::SpriteEditorWindow *ui;
+
+public slots:
+
+signals:
+
 };
 
 #endif // SPRITEEDITORWINDOW_H

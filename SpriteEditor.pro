@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     Model.cpp \
+    drawwindow.cpp \
     loadfilewindow.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     Model.h \
+    drawwindow.h \
     loadfilewindow.h \
     mainwindow.h \
     newfilewindow.h \
@@ -26,6 +28,7 @@ HEADERS += \
     startupwindow.h
 
 FORMS += \
+    drawwindow.ui \
     loadfilewindow.ui \
     mainwindow.ui \
     newfilewindow.ui \

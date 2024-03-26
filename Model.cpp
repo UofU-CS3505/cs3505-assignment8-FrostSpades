@@ -18,8 +18,9 @@ Model::Model(){
     size = 0;
 }
 
+Model::~Model() {
 
-
+}
 
 // The user wants to create a project from scratch. An empty project is created into a Json and aded to filePath.
 Model::Model(QString name, int thisSize, QString filePath)

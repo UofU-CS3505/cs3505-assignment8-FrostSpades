@@ -18,8 +18,8 @@
     <rect>
      <x>60</x>
      <y>70</y>
-     <width>301</width>
-     <height>101</height>
+     <width>191</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -29,7 +29,25 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Sprite Editor Window&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
+  <widget class="DrawWindow" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>70</y>
+     <width>291</width>
+     <height>201</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DrawWindow</class>
+   <extends>QWidget</extends>
+   <header>drawwindow.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

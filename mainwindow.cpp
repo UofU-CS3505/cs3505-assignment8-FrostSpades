@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent)
     , newFileWindow(new NewFileWindow)
     , spriteEditorWindow(new SpriteEditorWindow)
     , startupWindow(new StartupWindow)
-    , model(new Model)
 {
     ui->setupUi(this);
 
@@ -121,6 +120,10 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
     setModelConnections();
 }
 
+void MainWindow::receiveFrames(QImage frames[]) {
+
+}
+
 void MainWindow::setModelConnections() {
     connect(this, &MainWindow::deleteFrame, model, &Model::deleteFrame);
     connect(this, &MainWindow::addFrame, model, &Model::addFrame);
@@ -137,4 +140,7 @@ void MainWindow::onLoadFileSubmit(QString path)
     openSpriteEditorWindow();
     loadFileWindow->reset();
     loadFileWindow->close();
+
+    model = new Model(path);
+    setModelConnections();
 }
