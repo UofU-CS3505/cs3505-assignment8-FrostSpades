@@ -19,9 +19,10 @@ private:
     Ui::DrawWindow *ui;
 
 public slots:
+    void updateImages(QImage frames[]);
 
 signals:
-
+    void click(int ID, int x, int y);
 };
 
 #endif // DRAWWINDOW_H

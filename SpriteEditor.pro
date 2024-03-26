@@ -20,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     Model.h \
+    Tools.h \
     drawwindow.h \
     loadfilewindow.h \
     mainwindow.h \

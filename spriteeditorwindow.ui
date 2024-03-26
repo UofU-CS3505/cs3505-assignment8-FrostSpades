@@ -32,8 +32,8 @@
   <widget class="DrawWindow" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>70</y>
+     <x>390</x>
+     <y>50</y>
      <width>291</width>
      <height>201</height>
     </rect>

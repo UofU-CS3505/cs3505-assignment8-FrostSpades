@@ -12,3 +12,7 @@ DrawWindow::~DrawWindow()
 {
     delete ui;
 }
+
+void DrawWindow::updateImages(QImage frames[]) {
+
+}
