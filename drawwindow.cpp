@@ -44,36 +44,16 @@ QImage DrawWindow::getImageData()
 
 void DrawWindow::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton) {
-        int x = event->position().x() / scale; // Adjust coordinates for scaled image
-        int y = event->position().y() / scale;
-        setPixel(x,
-                 y,
-                 currentColor.red(),
-                 currentColor.green(),
-                 currentColor.blue(),
-                 currentColor.alpha());
-    } else if (event->button() == Qt::RightButton) {
-        int x = event->position().x() / scale;
-        int y = event->position().y() / scale;
-        deletePixel(x, y);
-    }
+    int x = event->position().x() / scale; // Adjust coordinates for scaled image
+    int y = event->position().y() / scale;
+    emit click(currentFrame, x, y);
 }
 
 void DrawWindow::mouseMoveEvent(QMouseEvent *event)
 {
     int x = event->position().x() / scale; // Adjust coordinates for scaled image
     int y = event->position().y() / scale;
-    if (event->buttons() & Qt::LeftButton) {
-        setPixel(x,
-                 y,
-                 currentColor.red(),
-                 currentColor.green(),
-                 currentColor.blue(),
-                 currentColor.alpha());
-    } else if (event->buttons() & Qt::RightButton) {
-        deletePixel(x, y);
-    }
+    emit click(currentFrame, x, y);
 }
 
 void DrawWindow::paintEvent(QPaintEvent *event)
@@ -83,9 +63,9 @@ void DrawWindow::paintEvent(QPaintEvent *event)
 }
 
 void DrawWindow::changeFrame(int ID) {
-
+    currentFrame = ID;
 }
 
-void DrawWindow::updateFrames(std::vector<QImage>& frames) {
-
+void DrawWindow::updateFrames(std::vector<QImage>& incomingFrames) {
+    frames = incomingFrames;
 }

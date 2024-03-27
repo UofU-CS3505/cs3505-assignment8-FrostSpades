@@ -25,12 +25,13 @@ public:
 
 private:
     Ui::SpriteEditorWindow *ui;
+    Tool currentTool;
 
 public slots:
     void processClick(int frameID, int x, int y);
 signals:
     void frameSpinBoxChanged(int frameID);
-    void sendClick(Tool tool, int frameID, int x, int y);
+    void sendClick(Tool tool, int frameID, int x, int y, int red, int green, int blue, int alpha);
     void saveButtonClicked();
     void updateDelayOfAnimation(int delay);
 private slots:
@@ -38,7 +39,9 @@ private slots:
     void on_greenSpinbox_valueChanged(int arg1);
     void on_blueSpinbox_valueChanged(int arg1);
     void on_redSpinbox_valueChanged(int arg1);
-    void changePreviewColor(int red, int green, int blue, int alpha);
+    void updatePreviewColor();
+    void on_PenTool_clicked();
+    void on_EraseTool_clicked();
 };
 
 #endif // SPRITEEDITORWINDOW_H

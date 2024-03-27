@@ -27,6 +27,8 @@ private:
     QColor currentColor;
     int scale; // Scale factor for pixels
     int size;  // size of image
+    int currentFrame; // current frame being looked at/edited
+    std::vector<QImage> frames; // temporary storage of frames for drawing
 public slots:
     void changeFrame(int ID);
     void updateFrames(std::vector<QImage>& frames);

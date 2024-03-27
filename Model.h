@@ -147,7 +147,7 @@ public slots:
      */
     void saveModel();
 
-    void changeFrame(Tool tool, int frameID, int x, int y);
+    void changeFrame(Tool tool, int frameID, int x, int y, int red, int green, int blue, int alpha);
 
 signals:
     /**

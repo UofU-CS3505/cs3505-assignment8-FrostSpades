@@ -32,8 +32,8 @@
   <widget class="DrawWindow" name="DrawWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>200</y>
+     <x>500</x>
+     <y>310</y>
      <width>320</width>
      <height>320</height>
     </rect>
@@ -64,7 +64,7 @@
   <widget class="QSlider" name="blueSlider">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>160</x>
      <y>180</y>
      <width>16</width>
      <height>160</height>
@@ -83,7 +83,7 @@
   <widget class="QSlider" name="greenSlider">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>100</x>
      <y>180</y>
      <width>16</width>
      <height>160</height>
@@ -118,7 +118,7 @@
   <widget class="QSpinBox" name="blueSpinbox">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>140</x>
      <y>360</y>
      <width>42</width>
      <height>25</height>
@@ -134,7 +134,7 @@
   <widget class="QSpinBox" name="greenSpinbox">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>80</x>
      <y>360</y>
      <width>42</width>
      <height>25</height>
@@ -198,6 +198,32 @@
     <string/>
    </property>
   </widget>
+  <widget class="QRadioButton" name="PenTool">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>240</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pen Tool</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="EraseTool">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>270</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Erase Tool</string>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -216,11 +242,11 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>171</x>
+     <x>111</x>
      <y>248</y>
     </hint>
     <hint type="destinationlabel">
-     <x>147</x>
+     <x>97</x>
      <y>372</y>
     </hint>
    </hints>
@@ -232,11 +258,11 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
+     <x>168</x>
      <y>262</y>
     </hint>
     <hint type="destinationlabel">
-     <x>88</x>
+     <x>158</x>
      <y>372</y>
     </hint>
    </hints>
@@ -264,11 +290,11 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>167</x>
+     <x>117</x>
      <y>370</y>
     </hint>
     <hint type="destinationlabel">
-     <x>171</x>
+     <x>111</x>
      <y>289</y>
     </hint>
    </hints>
@@ -280,11 +306,11 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>104</x>
+     <x>174</x>
      <y>369</y>
     </hint>
     <hint type="destinationlabel">
-     <x>109</x>
+     <x>169</x>
      <y>320</y>
     </hint>
    </hints>
