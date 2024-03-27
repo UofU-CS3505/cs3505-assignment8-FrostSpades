@@ -13,7 +13,7 @@ SpriteAnimation::~SpriteAnimation()
     delete ui;
 }
 
-void SpriteAnimation::updateFrames(QImage frames[]) {
+void SpriteAnimation::updateFrames(std::vector<QImage>& frames) {
 
 }
 

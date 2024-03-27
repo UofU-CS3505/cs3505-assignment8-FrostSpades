@@ -88,7 +88,7 @@ public slots:
      */
     void onLoadFileSubmit(QString path);
 
-    void receiveFrames(QImage frames[]);
+    void receiveFrames(std::vector<QImage>& frames);
 
 private:
     Ui::MainWindow *ui;

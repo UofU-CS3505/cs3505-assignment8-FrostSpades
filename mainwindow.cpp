@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     openStartupWindow();
 
+    // TEMPORARY, BIPASSES START MENU TEMPORARY!!!!!!!!!
+    openSpriteEditorWindow();
+
     setConnections();
     setGlobalPalette();
 }
@@ -120,7 +123,7 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
     setModelConnections();
 }
 
-void MainWindow::receiveFrames(QImage frames[]) {
+void MainWindow::receiveFrames(std::vector<QImage>& frames) {
 
 }
 

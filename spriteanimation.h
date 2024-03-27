@@ -19,7 +19,7 @@ private:
     Ui::SpriteAnimation *ui;
 
 public slots:
-    void updateFrames(QImage frames[]);
+    void updateFrames(std::vector<QImage>& frames);
     void changeDelay(int newDelay);
 };
 

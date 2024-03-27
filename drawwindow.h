@@ -29,7 +29,7 @@ private:
     int size;  // size of image
 public slots:
     void changeFrame(int ID);
-    void updateFrames(QImage frames[]);
+    void updateFrames(std::vector<QImage>& frames);
 signals:
     void click(int frameID, int x, int y);
 };

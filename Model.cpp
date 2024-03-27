@@ -165,11 +165,14 @@ void Model::switchFrames(int frameOneID, int frameTwoID)
 
 void Model::prepareImagesToSend()
 {
+    // CHANGE THIS TO std::vector IMPLEMENTATION
+
+    // make sure to delete the frame array in destructor
     QImage *frameArray = new QImage[frames.count()];
     for (auto it = frames.begin(); it != frames.end(); ++it) {
         frameArray[it.key()] = it.value().copy();
     }
-    emit sendFrames(frameArray);
+    //emit sendFrames(frameArray);
 }
 
 void Model::changeFrame(Tool tool, int frameID, int x, int y) {
