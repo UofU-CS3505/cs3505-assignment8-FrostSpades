@@ -210,6 +210,9 @@
    <property name="text">
     <string>Pen Tool</string>
    </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QRadioButton" name="EraseTool">
    <property name="geometry">
