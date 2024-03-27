@@ -120,7 +120,9 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
     setModelConnections();
 }
 
-void MainWindow::receiveFrames(QImage frames[]) {}
+void MainWindow::receiveFrames(QImage frames[]) {
+
+}
 
 void MainWindow::setModelConnections()
 {

@@ -16,6 +16,8 @@
 #include <QJsonObject>
 #include <QObject>
 #include <QVector>
+#include <QFrame>
+#include "Tools.h"
 
 class Model : public QObject
 {
@@ -144,6 +146,8 @@ public slots:
      * Saves the model to the given file path.
      */
     void saveModel();
+
+    void changeFrame(Tool tool, int frameID, int x, int y);
 
 signals:
     /**

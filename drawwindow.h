@@ -1,12 +1,13 @@
 #ifndef DRAWWINDOW_H
 #define DRAWWINDOW_H
 
-#include <QWidget>
-#include <QVector>
 #include <QMouseEvent>
 #include <QPainter>
+#include <QVector>
+#include <QWidget>
 
-class DrawWindow : public QWidget {
+class DrawWindow : public QWidget
+{
     Q_OBJECT
 public:
     explicit DrawWindow(QWidget *parent = nullptr);
@@ -25,7 +26,12 @@ private:
     QImage image;
     QColor currentColor;
     int scale; // Scale factor for pixels
-    int size; // size of image
+    int size;  // size of image
+public slots:
+    void changeFrame(int ID);
+    void updateFrames(QImage frames[]);
+signals:
+    void click(int frameID, int x, int y);
 };
 
 #endif // PIXELEDITORWIDGET_H

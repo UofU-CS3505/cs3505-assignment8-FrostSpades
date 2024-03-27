@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     newfilewindow.cpp \
+    spriteanimation.cpp \
     spriteeditorwindow.cpp \
     startupwindow.cpp
 
@@ -25,6 +26,7 @@ HEADERS += \
     loadfilewindow.h \
     mainwindow.h \
     newfilewindow.h \
+    spriteanimation.h \
     spriteeditorwindow.h \
     startupwindow.h
 
@@ -33,6 +35,7 @@ FORMS += \
     loadfilewindow.ui \
     mainwindow.ui \
     newfilewindow.ui \
+    spriteanimation.ui \
     spriteeditorwindow.ui \
     startupwindow.ui
 

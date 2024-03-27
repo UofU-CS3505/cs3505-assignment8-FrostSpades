@@ -12,3 +12,7 @@ SpriteEditorWindow::~SpriteEditorWindow()
 {
     delete ui;
 }
+
+void SpriteEditorWindow::processClick(int frameID, int x, int y) {
+
+}

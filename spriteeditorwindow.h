@@ -9,6 +9,7 @@
 #define SPRITEEDITORWINDOW_H
 
 #include <QWidget>
+#include "Tools.h"
 
 namespace Ui {
 class SpriteEditorWindow;
@@ -26,8 +27,12 @@ private:
     Ui::SpriteEditorWindow *ui;
 
 public slots:
-
+    void processClick(int frameID, int x, int y);
 signals:
+    void frameSpinBoxChanged(int frameID);
+    void sendClick(Tool tool, int frameID, int x, int y);
+    void saveButtonClicked();
+    void updateDelayOfAnimation(int delay);
 };
 
 #endif // SPRITEEDITORWINDOW_H
