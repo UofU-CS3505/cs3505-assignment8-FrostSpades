@@ -55,6 +55,14 @@ void MainWindow::setConnections()
             &LoadFileWindow::submitButtonClicked,
             this,
             &MainWindow::onLoadFileSubmit);
+
+    DrawWindow* drawWindow = spriteEditorWindow->getDrawWindow();
+
+    connect(spriteEditorWindow, &SpriteEditorWindow::frameSpinBoxChanged, drawWindow, &DrawWindow::changeFrame);
+    connect(drawWindow, &DrawWindow::click, spriteEditorWindow, &SpriteEditorWindow::processClick);
+
+    //connect(spriteEditorWindow, &SpriteEditorWindow::updateDelayOfAnimation, &SpriteAnimation::changeDelay());
+    //
 }
 
 void MainWindow::setGlobalPalette()
@@ -129,6 +137,7 @@ void MainWindow::receiveFrames(std::vector<QImage>& frames) {
 
 void MainWindow::setModelConnections()
 {
+
     connect(this, &MainWindow::deleteFrame, model, &Model::deleteFrame);
     connect(this, &MainWindow::addFrame, model, &Model::addFrame);
     connect(this, &MainWindow::drawOnFrame, model, &Model::changePixelData);

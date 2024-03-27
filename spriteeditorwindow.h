@@ -10,6 +10,7 @@
 
 #include <QWidget>
 #include "tools.h"
+#include "drawwindow.h"
 
 namespace Ui {
 class SpriteEditorWindow;
@@ -22,6 +23,7 @@ class SpriteEditorWindow : public QWidget
 public:
     explicit SpriteEditorWindow(QWidget *parent = nullptr);
     ~SpriteEditorWindow();
+    DrawWindow* getDrawWindow();
 
 private:
     Ui::SpriteEditorWindow *ui;

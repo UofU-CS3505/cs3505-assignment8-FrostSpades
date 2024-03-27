@@ -11,6 +11,10 @@ SpriteEditorWindow::~SpriteEditorWindow(){
     delete ui;
 }
 
+DrawWindow* SpriteEditorWindow::getDrawWindow(){
+    return ui->DrawWidget;
+}
+
 void SpriteEditorWindow::processClick(int frameID, int x, int y) {
 
     int red = ui->redSpinbox->value();
