@@ -4,7 +4,7 @@
 /// 3/2024
 ///
 
-#include "Model.h"
+#include "model.h"
 
 // Constructor
 Model::Model(QObject *parent)

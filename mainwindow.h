@@ -9,7 +9,7 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
-#include "Model.h"
+#include "model.h"
 #include "loadfilewindow.h"
 #include "newfilewindow.h"
 #include "spriteeditorwindow.h"

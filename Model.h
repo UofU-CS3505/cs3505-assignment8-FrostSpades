@@ -17,7 +17,7 @@
 #include <QObject>
 #include <QVector>
 #include <QFrame>
-#include "Tools.h"
+#include "tools.h"
 
 class Model : public QObject
 {

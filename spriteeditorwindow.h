@@ -9,7 +9,7 @@
 #define SPRITEEDITORWINDOW_H
 
 #include <QWidget>
-#include "Tools.h"
+#include "tools.h"
 
 namespace Ui {
 class SpriteEditorWindow;
