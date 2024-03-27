@@ -56,6 +56,7 @@ private:
 
     void prepareImagesToSend();
 
+
 public:
     explicit Model(QObject *parent = nullptr);
 
@@ -122,7 +123,7 @@ public slots:
      * @param g green value
      * @param b blue value
      */
-    void changePixelData(int id, int x, int y, int a, int r, int g, int b);
+    void changePixelData(int id, int x, int y, int r, int g, int b, int a);
 
     /**
      * @brief returnFrames
@@ -147,7 +148,7 @@ public slots:
      */
     void saveModel();
 
-    void changeFrame(Tool tool, int frameID, int x, int y, int red, int green, int blue, int alpha);
+    void changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int b, int a);
 
 signals:
     /**
@@ -157,6 +158,7 @@ signals:
      * @param frames the array of frames to send
      */
     void sendFrames(std::vector<QImage>& frames);
+
 };
 
 #endif // MODEL_H

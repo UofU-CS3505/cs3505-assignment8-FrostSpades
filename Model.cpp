@@ -4,7 +4,7 @@
 /// 3/2024
 ///
 
-#include "model.h"
+#include "Model.h"
 
 // Constructor
 Model::Model(QObject *parent)
@@ -13,9 +13,10 @@ Model::Model(QObject *parent)
     size = 0;
 }
 
-Model::Model()
-{
+
+Model::Model(){
     size = 0;
+    frames.insert(0, QImage(size, size, QImage::Format_RGBA16FPx4));
 }
 
 Model::~Model() {}
@@ -47,6 +48,8 @@ Model::Model(QString name, int thisSize, QString filePath)
     saveModel();
 
     // TODO: send open empty frame to view
+    prepareImagesToSend();
+
 }
 
 // The user wants to load a previous project. The project is saved in a Json at that filePath.
@@ -81,6 +84,7 @@ Model::Model(QString &filePath)
     file.close();
 
     // TODO: Open frames to view
+    prepareImagesToSend();
 }
 
 // The user wants to save the current project state. Update the json.
@@ -141,14 +145,16 @@ void Model::addFrame()
 void Model::deleteFrame(int id)
 {
     frames.remove(id);
+    prepareImagesToSend();
 }
 
-void Model::changePixelData(int id, int x, int y, int a, int r, int g, int b)
+void Model::changePixelData(int id, int x, int y, int r, int g, int b, int a)
 {
     // VASKO HOW DID YOU USE QIMAGE
     QImage daFrameImage = frames[id];
 
     daFrameImage.setPixel(x, y, qRgba(r, g, b, a));
+    prepareImagesToSend();
 }
 
 void Model::returnFrames()
@@ -161,21 +167,26 @@ void Model::switchFrames(int frameOneID, int frameTwoID)
     QImage saveSwitchingFrame = frames[frameOneID];
     frames[frameOneID] = frames[frameTwoID];
     frames[frameTwoID] = saveSwitchingFrame;
+
+    prepareImagesToSend();
 }
 
-void Model::prepareImagesToSend()
-{
-    // CHANGE THIS TO std::vector IMPLEMENTATION
+// Helper method
+void Model::prepareImagesToSend(){
+    std::vector<QImage> frameVector(frames.count());
+    frameVector.reserve(frames.count()); // Reserve space in vector to avoid reallocation
 
-    // make sure to delete the frame array in destructor
-    QImage *frameArray = new QImage[frames.count()];
     for (auto it = frames.begin(); it != frames.end(); ++it) {
-        frameArray[it.key()] = it.value().copy();
+        frameVector[it.key()] = it.value().copy();
     }
     //emit sendFrames(frameArray);
 }
 
-void Model::changeFrame(Tool tool, int frameID, int x, int y, int red, int green, int blue, int alpha) {
-
+void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int b, int a) {
+    if(tool == Tool::pen){
+        changePixelData(frameID, x, y, r, g, b, a);
+    } if (tool == Tool::eraser){
+        changePixelData(frameID, x, y, 255, 255, 255, 0);
+    }
 }
 
