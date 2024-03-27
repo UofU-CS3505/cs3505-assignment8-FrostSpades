@@ -175,7 +175,7 @@ void Model::prepareImagesToSend()
     //emit sendFrames(frameArray);
 }
 
-void Model::changeFrame(Tool tool, int frameID, int x, int y) {
+void Model::changeFrame(Tool tool, int frameID, int x, int y, int red, int green, int blue, int alpha) {
 
 }
 
