@@ -34,6 +34,7 @@ signals:
     void sendClick(Tool tool, int frameID, int x, int y, int red, int green, int blue, int alpha);
     void saveButtonClicked();
     void updateDelayOfAnimation(int delay);
+    void startMenuButtonClicked();
 private slots:
     void on_alphaSpinbox_valueChanged(int arg1);
     void on_greenSpinbox_valueChanged(int arg1);
@@ -42,6 +43,8 @@ private slots:
     void updatePreviewColor();
     void on_PenTool_clicked();
     void on_EraseTool_clicked();
+    void on_saveButton_clicked();
+    void on_startMenuButton_clicked();
 };
 
 #endif // SPRITEEDITORWINDOW_H

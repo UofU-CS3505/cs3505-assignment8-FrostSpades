@@ -90,6 +90,9 @@ public slots:
 
     void receiveFrames(std::vector<QImage>& frames);
 
+    // tells the view to return to start page
+    void returnToStartPage();
+
 private:
     Ui::MainWindow *ui;
     QStackedWidget *allPages;

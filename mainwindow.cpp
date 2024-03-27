@@ -148,3 +148,8 @@ void MainWindow::onLoadFileSubmit(QString path)
     model = new Model(path);
     setModelConnections();
 }
+
+void MainWindow::returnToStartPage(){
+    delete model;
+    openStartupWindow();
+}

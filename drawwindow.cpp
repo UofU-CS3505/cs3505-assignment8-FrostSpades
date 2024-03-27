@@ -68,4 +68,5 @@ void DrawWindow::changeFrame(int ID) {
 
 void DrawWindow::updateFrames(std::vector<QImage>& incomingFrames) {
     frames = incomingFrames;
+    update();
 }

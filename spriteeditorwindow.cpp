@@ -63,3 +63,15 @@ void SpriteEditorWindow::on_EraseTool_clicked()
     currentTool = eraser;
 }
 
+
+void SpriteEditorWindow::on_saveButton_clicked()
+{
+    emit saveButtonClicked();
+}
+
+
+void SpriteEditorWindow::on_startMenuButton_clicked()
+{
+    emit startMenuButtonClicked();
+}
+
