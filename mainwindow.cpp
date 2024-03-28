@@ -60,6 +60,7 @@ void MainWindow::setConnections()
 
     connect(spriteEditorWindow, &SpriteEditorWindow::frameSpinBoxChanged, drawWindow, &DrawWindow::changeFrame);
     connect(drawWindow, &DrawWindow::click, spriteEditorWindow, &SpriteEditorWindow::processClick);
+    connect(spriteEditorWindow, &SpriteEditorWindow::startMenuButtonClicked, this, &MainWindow::returnToStartPage);
 
     //connect(spriteEditorWindow, &SpriteEditorWindow::updateDelayOfAnimation, &SpriteAnimation::changeDelay());
     //
@@ -129,6 +130,7 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
     // TODO: Send data to model
     model = new Model(name, size, path);
     setModelConnections();
+    model->transmitSize();
 }
 
 void MainWindow::receiveFrames(QMap<int, QImage> frames) {
@@ -148,6 +150,7 @@ void MainWindow::setModelConnections()
 
     connect(model, &Model::sendFrames, this, &MainWindow::receiveFrames);
     connect(model, &Model::sendFrames, drawWindow, &DrawWindow::updateFrames);
+    connect(model, &Model::setSize, drawWindow, &DrawWindow::changePixelSize);
 
     connect(spriteEditorWindow, &SpriteEditorWindow::saveButtonClicked, model, &Model::saveModel);
 
@@ -166,6 +169,7 @@ void MainWindow::onLoadFileSubmit(QString path)
 
     model = new Model(path);
     setModelConnections();
+    model->notifyView();
 }
 
 void MainWindow::returnToStartPage(){

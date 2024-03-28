@@ -17,6 +17,8 @@ public:
     QColor getPixel(int x, int y);
     QImage getImageData();
 
+
+
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -32,6 +34,8 @@ private:
 public slots:
     void changeFrame(int ID);
     void updateFrames(QMap<int, QImage> frames);
+
+    void changePixelSize(int size);
 signals:
     void click(int frameID, int x, int y);
 };

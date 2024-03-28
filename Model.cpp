@@ -35,7 +35,9 @@ Model::Model(QString name, int thisSize, QString filePath)
     jsonObject["size"] = size;
 
     // Write JSON to file
-    QFile file(filePath + "/" + name + ".json");
+    saveFilePath = filePath + "/" + name + ".ssp";
+    QFile file(filePath + "/" + name + ".ssp");
+
     if (!file.open(QIODevice::WriteOnly)) {
         // Handle error
         qDebug() << "Failed to open file for writing:" << file.errorString();
@@ -181,5 +183,13 @@ void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int 
     } if (tool == Tool::eraser){
         changePixelData(frameID, x, y, 255, 255, 255, 0);
     }
+}
+
+void Model::transmitSize() {
+    emit setSize(size);
+}
+
+void Model::notifyView() {
+    prepareImagesToSend();
 }
 

@@ -91,6 +91,10 @@ public:
      */
     ~Model();
 
+    void transmitSize();
+
+    void notifyView();
+
 public slots:
     /**
      * @brief addFrame
@@ -158,6 +162,8 @@ signals:
      * @param frames the array of frames to send
      */
     void sendFrames(QMap<int, QImage> frames);
+
+    void setSize(int size);
 
 };
 

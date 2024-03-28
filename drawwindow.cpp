@@ -4,15 +4,23 @@
 DrawWindow::DrawWindow(QWidget *parent)
     : QWidget(parent)
 {
-    size = 8;
     setMouseTracking(true);
     resize(320, 320); // Set initial size to size X size
+    size = 8;
     image = QImage(size, size, QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
     scale = 320 / size;
-    image.fill(Qt::blue);   // Fill with transparent initially
-    currentColor = Qt::red; // Default color set to red
     currentFrame = 0;
     frames = QMap<int, QImage>();
+}
+
+void DrawWindow::changePixelSize(int newSize) {
+    // NOTE:
+    // Size works as non multiples of two
+    size = newSize;
+    image = QImage(size, size, QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
+    scale = 320 / size;
 }
 
 void DrawWindow::setPixel(int x, int y, int r, int g, int b, int alpha)

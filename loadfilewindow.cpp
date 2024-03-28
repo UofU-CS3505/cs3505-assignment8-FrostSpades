@@ -16,26 +16,21 @@ LoadFileWindow::~LoadFileWindow()
 
 void LoadFileWindow::on_sourceButton_clicked()
 {
-    QString directory = QFileDialog::getExistingDirectory(nullptr,
-                                                          "Directory Selection",
-                                                          QDir::homePath(),
-                                                          QFileDialog::ShowDirsOnly
-                                                              | QFileDialog::DontResolveSymlinks);
+    QString fileFilter = "SSP files (*.ssp)";
 
-    ui->textPath->setText(directory);
+    QString fileName = QFileDialog::getOpenFileName(nullptr,
+                                                          "Directory Selection", "",
+                                                          fileFilter);
+
+
+
+    ui->textPath->setText(fileName);
 }
 
 void LoadFileWindow::on_submitButton_clicked()
 {
     if (ui->textPath->displayText() == QString("")) {
         emit error(QString("Path cannot be empty"));
-        return;
-    }
-
-    QDir directory(ui->textPath->displayText());
-
-    if (!directory.exists()) {
-        emit error("Directory does not exist");
         return;
     }
 
