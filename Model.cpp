@@ -16,7 +16,7 @@ Model::Model(QObject *parent)
 
 Model::Model(){
     size = 0;
-    frames.insert(0, QImage(size, size, QImage::Format_ARGB32));
+    addFrame();
 }
 
 Model::~Model() {}
@@ -27,6 +27,7 @@ Model::Model(QString name, int thisSize, QString filePath)
     // Populate the Model
     size = thisSize;
     QImage starterImage(size, size, QImage::Format_ARGB32);
+    starterImage.fill(Qt::transparent);
     frames.insert(0, starterImage);
 
     // Create JSON object
@@ -133,12 +134,10 @@ QImage Model::base64ToImage(const QString &base64)
 
 void Model::addFrame()
 {
-    int currentNumberOfFrames = frames.count();
-    if (!frames.contains(currentNumberOfFrames)) {
-        QImage newFrame(size, size, QImage::Format_ARGB32);
-        newFrame.fill(Qt::transparent);
-        frames[currentNumberOfFrames] = newFrame;
-    }
+    QImage newFrame(size, size, QImage::Format_ARGB32);
+    newFrame.fill(Qt::transparent);
+    // frames.count is one bigger than the index of the last frame because the first frame has id of 0
+    frames.insert(frames.count(), newFrame);
 
     prepareImagesToSend();
 }
@@ -151,10 +150,8 @@ void Model::deleteFrame(int id)
 
 void Model::changePixelData(int id, int x, int y, int r, int g, int b, int a)
 {
-    // VASKO HOW DID YOU USE QIMAGE
-    QImage daFrameImage = frames[id];
 
-    daFrameImage.setPixel(x, y, qRgba(r, g, b, a));
+    frames[id].setPixel(x, y, qRgba(r, g, b, a));
     prepareImagesToSend();
 }
 
@@ -174,16 +171,6 @@ void Model::switchFrames(int frameOneID, int frameTwoID)
 
 // Helper method
 void Model::prepareImagesToSend(){
-    std::vector<QImage> frameVector(frames.count());
-    //frameVector.reserve(frames.count()); // Reserve space in vector to avoid reallocation
-
-    //for (auto it = frames.begin(); it != frames.end(); ++it) {
-    //    frameVector[it.key()] = it.value().copy();
-    //}
-
-    for (int i = 0; i < frames.count(); i++) {
-        frameVector.push_back(frames[i]);
-    }
 
     emit sendFrames(frames);
 }

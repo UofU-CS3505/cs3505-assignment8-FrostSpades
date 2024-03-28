@@ -55,9 +55,11 @@ void DrawWindow::mousePressEvent(QMouseEvent *event)
 
 void DrawWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    int x = event->position().x() / scale; // Adjust coordinates for scaled image
-    int y = event->position().y() / scale;
-    //emit click(currentFrame, x, y);
+    if (event->buttons() & Qt::LeftButton) {
+        int x = event->position().x() / scale; // Adjust coordinates for scaled image
+        int y = event->position().y() / scale;
+        emit click(currentFrame, x, y);
+    }
 }
 
 void DrawWindow::paintEvent(QPaintEvent *event)
