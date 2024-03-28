@@ -44,7 +44,7 @@ public slots:
     /// \brief updateFrames Model sendFrames signal, frame has been drawn on and needs to be updated in view.
     /// \param frames   All of the frames in the project.
     ///
-    void updateFrames(std::vector<QImage> frameVector);
+    void updateFrames(QMap<int, QImage> frames);
 
     ///
     /// \brief changeDelay  the delay of the fps in the animation has changed and needs to be updated.

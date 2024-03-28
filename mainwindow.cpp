@@ -131,7 +131,7 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
     setModelConnections();
 }
 
-void MainWindow::receiveFrames(std::vector<QImage> frames) {
+void MainWindow::receiveFrames(QMap<int, QImage> frames) {
 
 }
 

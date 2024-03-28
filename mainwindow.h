@@ -88,7 +88,7 @@ public slots:
      */
     void onLoadFileSubmit(QString path);
 
-    void receiveFrames(std::vector<QImage> frames);
+    void receiveFrames(QMap<int, QImage> frames);
 
     // tells the view to return to start page
     void returnToStartPage();

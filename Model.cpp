@@ -185,7 +185,7 @@ void Model::prepareImagesToSend(){
         frameVector.push_back(frames[i]);
     }
 
-    emit sendFrames(frameVector);
+    emit sendFrames(frames);
 }
 
 void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int b, int a) {

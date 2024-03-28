@@ -28,10 +28,10 @@ private:
     int scale; // Scale factor for pixels
     int size;  // size of image
     int currentFrame; // current frame being looked at/edited
-    std::vector<QImage> frames; // temporary storage of frames for drawing
+    QMap<int, QImage> frames; // temporary storage of frames for drawing
 public slots:
     void changeFrame(int ID);
-    void updateFrames(std::vector<QImage> frames);
+    void updateFrames(QMap<int, QImage> frames);
 signals:
     void click(int frameID, int x, int y);
 };

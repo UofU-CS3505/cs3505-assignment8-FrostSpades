@@ -46,7 +46,7 @@ QImage SpriteAnimation::currentFrame() const {
 
 
 // Slots
-void SpriteAnimation::updateFrames( std::vector<QImage> frameVector) {
+void SpriteAnimation::updateFrames(QMap<int, QImage> frameVector) {
 
     for (int i = 0; i < static_cast<int>(frameVector.size()); ++i) {
         ourFrames.insert(i, frameVector[i]);
