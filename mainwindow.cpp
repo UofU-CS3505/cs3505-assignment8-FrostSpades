@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     openStartupWindow();
 
     // TEMPORARY, BIPASSES START MENU TEMPORARY!!!!!!!!!
-    openSpriteEditorWindow();
+    //openSpriteEditorWindow();
 
     setConnections();
     setGlobalPalette();
@@ -131,12 +131,13 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
     setModelConnections();
 }
 
-void MainWindow::receiveFrames(std::vector<QImage>& frames) {
+void MainWindow::receiveFrames(std::vector<QImage> frames) {
 
 }
 
 void MainWindow::setModelConnections()
 {
+    DrawWindow* drawWindow = spriteEditorWindow->getDrawWindow();
 
     connect(this, &MainWindow::deleteFrame, model, &Model::deleteFrame);
     connect(this, &MainWindow::addFrame, model, &Model::addFrame);
@@ -146,6 +147,15 @@ void MainWindow::setModelConnections()
     connect(this, &MainWindow::saveData, model, &Model::saveModel);
 
     connect(model, &Model::sendFrames, this, &MainWindow::receiveFrames);
+    connect(model, &Model::sendFrames, drawWindow, &DrawWindow::updateFrames);
+
+    connect(spriteEditorWindow, &SpriteEditorWindow::saveButtonClicked, model, &Model::saveModel);
+
+    // Still need animation window connections
+
+    connect(spriteEditorWindow, &SpriteEditorWindow::sendClick, model, &Model::changeFrame);
+
+
 }
 
 void MainWindow::onLoadFileSubmit(QString path)

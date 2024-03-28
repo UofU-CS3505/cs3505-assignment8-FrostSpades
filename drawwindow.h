@@ -31,7 +31,7 @@ private:
     std::vector<QImage> frames; // temporary storage of frames for drawing
 public slots:
     void changeFrame(int ID);
-    void updateFrames(std::vector<QImage>& frames);
+    void updateFrames(std::vector<QImage> frames);
 signals:
     void click(int frameID, int x, int y);
 };

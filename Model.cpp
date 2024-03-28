@@ -16,7 +16,7 @@ Model::Model(QObject *parent)
 
 Model::Model(){
     size = 0;
-    frames.insert(0, QImage(size, size, QImage::Format_RGBA16FPx4));
+    frames.insert(0, QImage(size, size, QImage::Format_ARGB32));
 }
 
 Model::~Model() {}
@@ -26,7 +26,7 @@ Model::Model(QString name, int thisSize, QString filePath)
 {
     // Populate the Model
     size = thisSize;
-    QImage starterImage(size, size, QImage::Format_RGBA16FPx4);
+    QImage starterImage(size, size, QImage::Format_ARGB32);
     frames.insert(0, starterImage);
 
     // Create JSON object
@@ -135,7 +135,8 @@ void Model::addFrame()
 {
     int currentNumberOfFrames = frames.count();
     if (!frames.contains(currentNumberOfFrames)) {
-        QImage newFrame(size, size, QImage::Format_RGBA16FPx4);
+        QImage newFrame(size, size, QImage::Format_ARGB32);
+        newFrame.fill(Qt::transparent);
         frames[currentNumberOfFrames] = newFrame;
     }
 
@@ -174,12 +175,17 @@ void Model::switchFrames(int frameOneID, int frameTwoID)
 // Helper method
 void Model::prepareImagesToSend(){
     std::vector<QImage> frameVector(frames.count());
-    frameVector.reserve(frames.count()); // Reserve space in vector to avoid reallocation
+    //frameVector.reserve(frames.count()); // Reserve space in vector to avoid reallocation
 
-    for (auto it = frames.begin(); it != frames.end(); ++it) {
-        frameVector[it.key()] = it.value().copy();
+    //for (auto it = frames.begin(); it != frames.end(); ++it) {
+    //    frameVector[it.key()] = it.value().copy();
+    //}
+
+    for (int i = 0; i < frames.count(); i++) {
+        frameVector.push_back(frames[i]);
     }
-    //emit sendFrames(frameArray);
+
+    emit sendFrames(frameVector);
 }
 
 void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int b, int a) {

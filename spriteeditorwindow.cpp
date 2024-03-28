@@ -5,6 +5,8 @@ SpriteEditorWindow::SpriteEditorWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::SpriteEditorWindow){
     ui->setupUi(this);
+
+    currentTool = pen;
 }
 
 SpriteEditorWindow::~SpriteEditorWindow(){

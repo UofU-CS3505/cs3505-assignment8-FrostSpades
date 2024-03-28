@@ -1,4 +1,5 @@
 #include "drawwindow.h"
+#include <iostream>
 
 DrawWindow::DrawWindow(QWidget *parent)
     : QWidget(parent)
@@ -10,6 +11,7 @@ DrawWindow::DrawWindow(QWidget *parent)
     scale = 320 / size;
     image.fill(Qt::blue);   // Fill with transparent initially
     currentColor = Qt::red; // Default color set to red
+    currentFrame = 0;
 }
 
 void DrawWindow::setPixel(int x, int y, int r, int g, int b, int alpha)
@@ -44,8 +46,15 @@ QImage DrawWindow::getImageData()
 
 void DrawWindow::mousePressEvent(QMouseEvent *event)
 {
+    double xd = event->position().x();
+    double yd = event->position().y();
+
     int x = event->position().x() / scale; // Adjust coordinates for scaled image
     int y = event->position().y() / scale;
+
+    //std::cout << "Working" << std::endl;
+    std::cout << x + " " + y << std::endl;
+
     emit click(currentFrame, x, y);
 }
 
@@ -66,7 +75,12 @@ void DrawWindow::changeFrame(int ID) {
     currentFrame = ID;
 }
 
-void DrawWindow::updateFrames(std::vector<QImage>& incomingFrames) {
+void DrawWindow::updateFrames(std::vector<QImage> incomingFrames) {
     frames = incomingFrames;
+    image = frames[currentFrame];
+
+    QImage temp = QImage(8, 8, QImage::Format_ARGB32);
+    temp.fill(Qt::transparent);
+    temp.setPixel(4, 4, QRgb(255, 0, 0));
     update();
 }

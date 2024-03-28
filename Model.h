@@ -157,7 +157,7 @@ signals:
      *
      * @param frames the array of frames to send
      */
-    void sendFrames(std::vector<QImage>& frames);
+    void sendFrames(std::vector<QImage> frames);
 
 };
 
