@@ -164,6 +164,7 @@ signals:
     void sendFrames(QMap<int, QImage> frames);
 
     void setSize(int size);
+    void numberOfFrames(int numberOfFrames);
 
 };
 

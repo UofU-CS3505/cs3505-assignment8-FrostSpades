@@ -123,3 +123,6 @@ void SpriteEditorWindow::on_deleteCurrentFrame_clicked()
     emit deleteCurrentFrame(currentFrame);
 }
 
+void SpriteEditorWindow::setSpinbox(int newMaxValue){
+    ui->frameSwitcher->setMaximum(newMaxValue);
+}

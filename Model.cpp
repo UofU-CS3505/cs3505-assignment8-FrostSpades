@@ -5,7 +5,7 @@
 ///
 
 #include "Model.h"
-
+#include <iostream>
 // Constructor
 Model::Model(QObject *parent)
     : QObject(parent)
@@ -59,6 +59,8 @@ Model::Model(QString name, int thisSize, QString filePath)
 // Deserialize the json and send it to view.
 Model::Model(QString &filePath)
 {
+    saveFilePath = filePath;
+
     // Read JSON file
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly)) {
@@ -92,7 +94,7 @@ Model::Model(QString &filePath)
 
 // The user wants to save the current project state. Update the json.
 void Model::saveModel()
-{
+{   
     // Create JSON object
     QJsonObject jsonObject;
     jsonObject["size"] = size;
@@ -111,7 +113,7 @@ void Model::saveModel()
         file.write(jsonDoc.toJson());
         file.close();
     } else {
-        // Handle error
+        std::cout << "Couldn't open file" << std::endl;
     }
 }
 
@@ -187,7 +189,7 @@ void Model::switchFrames(int frameOneID, int frameTwoID)
 
 // Helper method
 void Model::prepareImagesToSend(){
-
+    emit numberOfFrames(frames.count());
     emit sendFrames(frames);
 }
 

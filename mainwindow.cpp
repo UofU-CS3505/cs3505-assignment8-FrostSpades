@@ -151,6 +151,9 @@ void MainWindow::setModelConnections()
 
     connect(model, &Model::sendFrames, this, &MainWindow::receiveFrames);
     connect(model, &Model::sendFrames, drawWindow, &DrawWindow::updateFrames);
+    // new connection
+    connect(model, &Model::numberOfFrames, spriteEditorWindow, &SpriteEditorWindow::setSpinbox);
+    // new connection
     connect(model, &Model::setSize, drawWindow, &DrawWindow::changePixelSize);
 
     connect(spriteEditorWindow, &SpriteEditorWindow::saveButtonClicked, model, &Model::saveModel);

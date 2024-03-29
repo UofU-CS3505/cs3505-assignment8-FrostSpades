@@ -33,6 +33,7 @@ private:
 
 public slots:
     void processClick(int frameID, int x, int y);
+    void setSpinbox(int newMaxValue);
 signals:
     void frameSpinBoxChanged(int frameID);
     void sendClick(Tool tool, int frameID, int x, int y, int red, int green, int blue, int alpha);
