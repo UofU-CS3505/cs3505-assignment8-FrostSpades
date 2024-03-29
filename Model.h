@@ -10,13 +10,13 @@
 #include <QBuffer>
 #include <QDebug>
 #include <QFile>
+#include <QFrame>
 #include <QImage>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QObject>
 #include <QVector>
-#include <QFrame>
 #include "tools.h"
 
 class Model : public QObject
@@ -55,7 +55,6 @@ private:
     QImage base64ToImage(const QString &base64);
 
     void prepareImagesToSend();
-
 
 public:
     explicit Model(QObject *parent = nullptr);
@@ -165,7 +164,6 @@ signals:
 
     void setSize(int size);
     void numberOfFrames(int numberOfFrames);
-
 };
 
 #endif // MODEL_H

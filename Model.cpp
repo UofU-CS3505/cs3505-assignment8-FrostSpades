@@ -13,8 +13,8 @@ Model::Model(QObject *parent)
     size = 0;
 }
 
-
-Model::Model(){
+Model::Model()
+{
     size = 0;
     addFrame();
 }
@@ -52,7 +52,6 @@ Model::Model(QString name, int thisSize, QString filePath)
 
     // TODO: send open empty frame to view
     prepareImagesToSend();
-
 }
 
 // The user wants to load a previous project. The project is saved in a Json at that filePath.
@@ -94,7 +93,7 @@ Model::Model(QString &filePath)
 
 // The user wants to save the current project state. Update the json.
 void Model::saveModel()
-{   
+{
     // Create JSON object
     QJsonObject jsonObject;
     jsonObject["size"] = size;
@@ -168,7 +167,6 @@ void Model::deleteFrame(int id)
 
 void Model::changePixelData(int id, int x, int y, int r, int g, int b, int a)
 {
-
     frames[id].setPixel(x, y, qRgba(r, g, b, a));
     prepareImagesToSend();
 }
@@ -188,24 +186,28 @@ void Model::switchFrames(int frameOneID, int frameTwoID)
 }
 
 // Helper method
-void Model::prepareImagesToSend(){
+void Model::prepareImagesToSend()
+{
     emit numberOfFrames(frames.count());
     emit sendFrames(frames);
 }
 
-void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int b, int a) {
-    if(tool == Tool::pen){
+void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int b, int a)
+{
+    if (tool == Tool::pen) {
         changePixelData(frameID, x, y, r, g, b, a);
-    } if (tool == Tool::eraser){
+    }
+    if (tool == Tool::eraser) {
         changePixelData(frameID, x, y, 255, 255, 255, 0);
     }
 }
 
-void Model::transmitSize() {
+void Model::transmitSize()
+{
     emit setSize(size);
 }
 
-void Model::notifyView() {
+void Model::notifyView()
+{
     prepareImagesToSend();
 }
-

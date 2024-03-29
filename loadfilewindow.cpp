@@ -18,11 +18,7 @@ void LoadFileWindow::on_sourceButton_clicked()
 {
     QString fileFilter = "SSP files (*.ssp)";
 
-    QString fileName = QFileDialog::getOpenFileName(nullptr,
-                                                          "Directory Selection", "",
-                                                          fileFilter);
-
-
+    QString fileName = QFileDialog::getOpenFileName(nullptr, "Directory Selection", "", fileFilter);
 
     ui->textPath->setText(fileName);
 }

@@ -1,10 +1,10 @@
 #ifndef SPRITEANIMATION_H
 #define SPRITEANIMATION_H
 
-#include <QWidget>
+#include <QLabel>
 #include <QPainter>
 #include <QTimer>
-#include <QLabel>
+#include <QWidget>
 
 #include "model.h"
 
@@ -37,9 +37,6 @@ private:
 
 protected:
     void paintEvent(QPaintEvent *event) override;
-
-
-
 
 public slots:
 

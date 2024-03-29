@@ -126,3 +126,9 @@ void SpriteEditorWindow::on_deleteCurrentFrame_clicked()
 void SpriteEditorWindow::setSpinbox(int newMaxValue){
     ui->frameSwitcher->setMaximum(newMaxValue);
 }
+
+void SpriteEditorWindow::on_horizontalSlider_sliderMoved(int position)
+{
+    emit updateDelayOfAnimation(position);
+}
+

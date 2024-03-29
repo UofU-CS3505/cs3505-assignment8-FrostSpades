@@ -17,7 +17,6 @@ public:
     QColor getPixel(int x, int y);
     QImage getImageData();
 
-
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -26,9 +25,9 @@ protected:
 private:
     QImage image;
     QColor currentColor;
-    int scale; // Scale factor for pixels
-    int size;  // size of image
-    int currentFrame; // current frame being looked at/edited
+    int scale;                // Scale factor for pixels
+    int size;                 // size of image
+    int currentFrame;         // current frame being looked at/edited
     QMap<int, QImage> frames; // temporary storage of frames for drawing
 public slots:
     void changeFrame(int ID);

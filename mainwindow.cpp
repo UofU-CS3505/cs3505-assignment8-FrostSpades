@@ -56,12 +56,24 @@ void MainWindow::setConnections()
             this,
             &MainWindow::onLoadFileSubmit);
 
-    DrawWindow* drawWindow = spriteEditorWindow->getDrawWindow();
+    DrawWindow *drawWindow = spriteEditorWindow->getDrawWindow();
+    SpriteAnimation *animationWindow = spriteEditorWindow->getAnimationWindow();
 
-    connect(spriteEditorWindow, &SpriteEditorWindow::frameSpinBoxChanged, drawWindow, &DrawWindow::changeFrame);
+    connect(spriteEditorWindow, &SpriteEditorWindow::updateDelayOfAnimation, animationWindow, &SpriteAnimation::changeDelay);
+
+    connect(spriteEditorWindow,
+            &SpriteEditorWindow::frameSpinBoxChanged,
+            drawWindow,
+            &DrawWindow::changeFrame);
     connect(drawWindow, &DrawWindow::click, spriteEditorWindow, &SpriteEditorWindow::processClick);
-    connect(spriteEditorWindow, &SpriteEditorWindow::startMenuButtonClicked, this, &MainWindow::returnToStartPage);
-    connect(spriteEditorWindow, &SpriteEditorWindow::setCurrentFrame, drawWindow, &DrawWindow::changeFrame);
+    connect(spriteEditorWindow,
+            &SpriteEditorWindow::startMenuButtonClicked,
+            this,
+            &MainWindow::returnToStartPage);
+    connect(spriteEditorWindow,
+            &SpriteEditorWindow::setCurrentFrame,
+            drawWindow,
+            &DrawWindow::changeFrame);
 
     //connect(spriteEditorWindow, &SpriteEditorWindow::updateDelayOfAnimation, &SpriteAnimation::changeDelay());
     //
@@ -134,13 +146,13 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
     model->transmitSize();
 }
 
-void MainWindow::receiveFrames(QMap<int, QImage> frames) {
-
-}
+void MainWindow::receiveFrames(QMap<int, QImage> frames) {}
 
 void MainWindow::setModelConnections()
 {
-    DrawWindow* drawWindow = spriteEditorWindow->getDrawWindow();
+    DrawWindow *drawWindow = spriteEditorWindow->getDrawWindow();
+    SpriteAnimation *animationWindow = spriteEditorWindow->getAnimationWindow();
+
 
     connect(this, &MainWindow::deleteFrame, model, &Model::deleteFrame);
     connect(this, &MainWindow::addFrame, model, &Model::addFrame);
@@ -157,6 +169,8 @@ void MainWindow::setModelConnections()
     connect(model, &Model::setSize, drawWindow, &DrawWindow::changePixelSize);
 
     connect(spriteEditorWindow, &SpriteEditorWindow::saveButtonClicked, model, &Model::saveModel);
+
+    connect(model, &Model::sendFrames, animationWindow, &SpriteAnimation::updateFrames);
 
     // Still need animation window connections
 
@@ -176,7 +190,8 @@ void MainWindow::onLoadFileSubmit(QString path)
     model->notifyView();
 }
 
-void MainWindow::returnToStartPage(){
+void MainWindow::returnToStartPage()
+{
     delete model;
     openStartupWindow();
 }

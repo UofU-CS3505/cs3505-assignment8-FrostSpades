@@ -340,6 +340,28 @@
     <string>Delete Current Frame</string>
    </property>
   </widget>
+  <widget class="QSlider" name="horizontalSlider">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>230</y>
+     <width>160</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>16</number>
+   </property>
+   <property name="maximum">
+    <number>2000</number>
+   </property>
+   <property name="value">
+    <number>2000</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>redSlider</zorder>
   <zorder>blueSlider</zorder>
@@ -361,6 +383,7 @@
   <zorder>frameSwitcher</zorder>
   <zorder>label_3</zorder>
   <zorder>deleteCurrentFrame</zorder>
+  <zorder>horizontalSlider</zorder>
  </widget>
  <customwidgets>
   <customwidget>

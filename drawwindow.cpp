@@ -14,7 +14,8 @@ DrawWindow::DrawWindow(QWidget *parent)
     frames = QMap<int, QImage>();
 }
 
-void DrawWindow::changePixelSize(int newSize) {
+void DrawWindow::changePixelSize(int newSize)
+{
     // NOTE:
     // Size works as non multiples of two
     size = newSize;
@@ -76,14 +77,16 @@ void DrawWindow::paintEvent(QPaintEvent *event)
     painter.drawImage(0, 0, image.scaled(QSize(320, 320))); // Scale image to fit widget size
 }
 
-void DrawWindow::changeFrame(int ID) {
+void DrawWindow::changeFrame(int ID)
+{
     currentFrame = ID - 1;
     image = frames[currentFrame];
 
     update();
 }
 
-void DrawWindow::updateFrames(QMap<int, QImage> incomingFrames) {
+void DrawWindow::updateFrames(QMap<int, QImage> incomingFrames)
+{
     frames = incomingFrames;
     image = incomingFrames[currentFrame];
 
