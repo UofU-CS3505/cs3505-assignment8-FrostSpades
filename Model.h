@@ -30,6 +30,8 @@ private:
     ///
     int size;
 
+    bool isSaved;
+
     ///
     /// \brief frames is a map from the key (which is the id of the QImage) to a QImage.
     ///
@@ -93,6 +95,8 @@ public:
     void transmitSize();
 
     void notifyView();
+
+    bool getIsSaved();
 
 public slots:
     /**

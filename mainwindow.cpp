@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     , startupWindow(new StartupWindow)
 {
     ui->setupUi(this);
+    model = nullptr;
 
     // Add pages to the main view
     allPages->addWidget(startupWindow);
@@ -206,4 +207,27 @@ void MainWindow::returnToStartPage()
     allPages->addWidget(spriteEditorWindow);
 
     openStartupWindow();
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+    if (model == nullptr) {
+        event->accept();
+        return;
+    }
+
+    bool isSaved = model->getIsSaved();
+
+    if (!isSaved) {
+        QMessageBox::StandardButton reply = QMessageBox::question(this, "Warning: Unsaved Changes", "Unsaved Changes: Are you sure you want to exit?",
+                                                                  QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            event->accept();
+        } else {
+            event->ignore();
+        }
+    }
+    else {
+        event->accept();
+    }
+
 }

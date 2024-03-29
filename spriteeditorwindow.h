@@ -9,9 +9,9 @@
 #define SPRITEEDITORWINDOW_H
 
 #include <QWidget>
+#include "drawwindow.h"
 #include "spriteanimation.h"
 #include "tools.h"
-#include "drawwindow.h"
 
 namespace Ui {
 class SpriteEditorWindow;
@@ -24,8 +24,8 @@ class SpriteEditorWindow : public QWidget
 public:
     explicit SpriteEditorWindow(QWidget *parent = nullptr);
     ~SpriteEditorWindow();
-    DrawWindow* getDrawWindow();
-    SpriteAnimation* getAnimationWindow();
+    DrawWindow *getDrawWindow();
+    SpriteAnimation *getAnimationWindow();
 
 private:
     Ui::SpriteEditorWindow *ui;

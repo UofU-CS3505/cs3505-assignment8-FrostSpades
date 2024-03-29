@@ -136,5 +136,8 @@ signals:
     void getData();
     void reorderFrames(int frameOneID, int frameTwoID);
     void saveData();
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 };
 #endif // MAINWINDOW_H

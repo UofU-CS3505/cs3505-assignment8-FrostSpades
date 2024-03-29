@@ -26,6 +26,7 @@ Model::Model(QString name, int thisSize, QString filePath)
 {
     // Populate the Model
     size = thisSize;
+    isSaved = true;
     QImage starterImage(size, size, QImage::Format_ARGB32);
     starterImage.fill(Qt::transparent);
     frames.insert(0, starterImage);
@@ -59,6 +60,7 @@ Model::Model(QString name, int thisSize, QString filePath)
 Model::Model(QString &filePath)
 {
     saveFilePath = filePath;
+    isSaved = true;
 
     // Read JSON file
     QFile file(filePath);
@@ -94,6 +96,8 @@ Model::Model(QString &filePath)
 // The user wants to save the current project state. Update the json.
 void Model::saveModel()
 {
+    isSaved = true;
+
     // Create JSON object
     QJsonObject jsonObject;
     jsonObject["size"] = size;
@@ -190,6 +194,8 @@ void Model::prepareImagesToSend()
 {
     emit numberOfFrames(frames.count());
     emit sendFrames(frames);
+
+    isSaved = false;
 }
 
 void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int b, int a)
@@ -200,7 +206,7 @@ void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int 
     if (tool == Tool::eraser) {
         changePixelData(frameID, x, y, 255, 255, 255, 0);
     }
-    if(tool == Tool::fillTool){
+    if (tool == Tool::fillTool) {
         frames[frameID].fill(QColor::fromRgba(qRgba(r, g, b, a)));
         prepareImagesToSend();
     }
@@ -225,4 +231,8 @@ void Model::swapFrames(int leftFrameID, int rightFrameID)
         std::cout << "Switched frames" << std::endl;
     }
     prepareImagesToSend();
+}
+
+bool Model::getIsSaved() {
+    return isSaved;
 }
