@@ -159,7 +159,7 @@ void MainWindow::setModelConnections()
 
     connect(spriteEditorWindow, &SpriteEditorWindow::sendClick, model, &Model::changeFrame);
     connect(spriteEditorWindow, &SpriteEditorWindow::addFrame, model, &Model::addFrame);
-
+    connect(spriteEditorWindow, &SpriteEditorWindow::deleteCurrentFrame, model &Model::deleteFrame);
 }
 
 void MainWindow::onLoadFileSubmit(QString path)

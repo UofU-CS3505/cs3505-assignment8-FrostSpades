@@ -77,7 +77,8 @@ void DrawWindow::paintEvent(QPaintEvent *event)
 }
 
 void DrawWindow::changeFrame(int ID) {
-    currentFrame = ID;
+    currentFrame = ID - 1;
+    image = frames[currentFrame];
 
     update();
 }

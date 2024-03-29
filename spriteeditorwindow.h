@@ -40,7 +40,7 @@ signals:
     void updateDelayOfAnimation(int delay);
     void startMenuButtonClicked();
     void addFrame();
-    void deleteCurrentFrame();
+    void deleteCurrentFrame(int frameID);
     void setCurrentFrame(int newFrame);
 private slots:
     void on_alphaSpinbox_valueChanged(int arg1);

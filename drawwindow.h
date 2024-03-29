@@ -18,7 +18,6 @@ public:
     QImage getImageData();
 
 
-
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
