@@ -59,7 +59,10 @@ void MainWindow::setConnections()
     DrawWindow *drawWindow = spriteEditorWindow->getDrawWindow();
     SpriteAnimation *animationWindow = spriteEditorWindow->getAnimationWindow();
 
-    connect(spriteEditorWindow, &SpriteEditorWindow::updateDelayOfAnimation, animationWindow, &SpriteAnimation::changeDelay);
+    connect(spriteEditorWindow,
+            &SpriteEditorWindow::updateDelayOfAnimation,
+            animationWindow,
+            &SpriteAnimation::changeDelay);
 
     connect(spriteEditorWindow,
             &SpriteEditorWindow::frameSpinBoxChanged,
@@ -152,7 +155,6 @@ void MainWindow::setModelConnections()
 {
     DrawWindow *drawWindow = spriteEditorWindow->getDrawWindow();
     SpriteAnimation *animationWindow = spriteEditorWindow->getAnimationWindow();
-
 
     connect(this, &MainWindow::deleteFrame, model, &Model::deleteFrame);
     connect(this, &MainWindow::addFrame, model, &Model::addFrame);

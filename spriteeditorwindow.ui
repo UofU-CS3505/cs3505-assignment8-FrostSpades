@@ -423,6 +423,19 @@
     <string>Switch Frames</string>
    </property>
   </widget>
+  <widget class="QRadioButton" name="FillTool">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>300</y>
+     <width>112</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Fill Tool</string>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>redSlider</zorder>
   <zorder>blueSlider</zorder>
@@ -449,6 +462,7 @@
   <zorder>leftSwitchSpinbox</zorder>
   <zorder>rightSwitchSpinbox</zorder>
   <zorder>switchFramesButton</zorder>
+  <zorder>FillTool</zorder>
  </widget>
  <customwidgets>
   <customwidget>

@@ -200,6 +200,10 @@ void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int 
     if (tool == Tool::eraser) {
         changePixelData(frameID, x, y, 255, 255, 255, 0);
     }
+    if(tool == Tool::fillTool){
+        frames[frameID].fill(QColor::fromRgba(qRgba(r, g, b, a)));
+        prepareImagesToSend();
+    }
 }
 
 void Model::transmitSize()
@@ -213,22 +217,12 @@ void Model::notifyView()
     prepareImagesToSend();
 }
 
-void Model::swapFrames(int leftFrameID, int rightFrameID){
-
+void Model::swapFrames(int leftFrameID, int rightFrameID)
+{
     std::cout << "Trying to switch frames" << std::endl;
-    if(leftFrameID != rightFrameID){
+    if (leftFrameID != rightFrameID) {
         frames[leftFrameID].swap(frames[rightFrameID]);
         std::cout << "Switched frames" << std::endl;
     }
     prepareImagesToSend();
 }
-
-
-
-
-
-
-
-
-
-

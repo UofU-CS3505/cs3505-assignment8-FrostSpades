@@ -59,6 +59,7 @@ private slots:
     void on_deleteCurrentFrame_clicked();
     void on_horizontalSlider_sliderMoved(int position);
     void on_switchFramesButton_clicked();
+    void on_FillTool_clicked();
 };
 
 #endif // SPRITEEDITORWINDOW_H

@@ -78,6 +78,11 @@ void SpriteEditorWindow::on_EraseTool_clicked()
     currentTool = eraser;
 }
 
+void SpriteEditorWindow::on_FillTool_clicked()
+{
+    currentTool = fillTool;
+}
+
 
 void SpriteEditorWindow::on_saveButton_clicked()
 {
@@ -140,4 +145,5 @@ void SpriteEditorWindow::on_switchFramesButton_clicked()
 {
     emit swapFrames(ui->leftSwitchSpinbox->value()-1, ui->rightSwitchSpinbox->value()-1);
 }
+
 
