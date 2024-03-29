@@ -6,6 +6,8 @@
 #include <QTimer>
 #include <QLabel>
 
+#include "model.h"
+
 using namespace std;
 
 namespace Ui {
@@ -18,7 +20,6 @@ class SpriteAnimation : public QWidget
 
 public:
     explicit SpriteAnimation(QWidget *parent = nullptr);
-    ~SpriteAnimation();
 
     void startAnimation();
 
@@ -27,6 +28,8 @@ private:
     QMap<int, QImage> ourFrames;
     int animationDelay;
     QTimer *timer;
+
+    Model *model;
 
     int currentIndex;
 

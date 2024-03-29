@@ -1,13 +1,8 @@
 #include "spriteanimation.h"
-#include "ui_spriteanimation.h"
 
 SpriteAnimation::SpriteAnimation(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::SpriteAnimation)
 {
-    ui->setupUi(this);
-
-
     animationDelay = 10;
 
     // Wait for frames
@@ -19,10 +14,6 @@ SpriteAnimation::SpriteAnimation(QWidget *parent)
 
 }
 
-SpriteAnimation::~SpriteAnimation()
-{
-    delete ui;
-}
 
 void SpriteAnimation::startAnimation() {
     if (!ourFrames.isEmpty())
@@ -32,7 +23,7 @@ void SpriteAnimation::startAnimation() {
 
 void SpriteAnimation::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
-    painter.drawImage(rect(), currentFrame());
+    painter.drawImage(rect(), ourFrames[currentIndex].scaled(QSize(32, 32)));
 }
 
 QImage SpriteAnimation::currentFrame() const {
@@ -53,10 +44,9 @@ void SpriteAnimation::updateFrames(QMap<int, QImage> frameVector) {
     }
 
     // Update animation size realistically
-    this->setGeometry(0, 0, ourFrames.first().width(), ourFrames.first().width());
+    this->setGeometry(530, 100, ourFrames.first().width(), ourFrames.first().width());
 
     startAnimation();
-    show();
 }
 
 void SpriteAnimation::changeDelay(int newDelay) {

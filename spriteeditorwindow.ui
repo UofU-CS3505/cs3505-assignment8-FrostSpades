@@ -33,7 +33,7 @@
    <property name="geometry">
     <rect>
      <x>430</x>
-     <y>220</y>
+     <y>320</y>
      <width>320</width>
      <height>320</height>
     </rect>
@@ -256,10 +256,10 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>200</y>
-     <width>361</width>
-     <height>361</height>
+     <x>420</x>
+     <y>310</y>
+     <width>341</width>
+     <height>341</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -267,6 +267,19 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="SpriteAnimation" name="spriteAnimationWidg" native="true">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>100</y>
+     <width>120</width>
+     <height>120</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background::rgb(255, 255, 255);</string>
    </property>
   </widget>
   <zorder>label</zorder>
@@ -285,12 +298,19 @@
   <zorder>startMenuButton</zorder>
   <zorder>label_2</zorder>
   <zorder>DrawWidget</zorder>
+  <zorder>spriteAnimationWidg</zorder>
  </widget>
  <customwidgets>
   <customwidget>
    <class>DrawWindow</class>
    <extends>QWidget</extends>
    <header>drawwindow.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SpriteAnimation</class>
+   <extends>QWidget</extends>
+   <header>spriteanimation.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -7,6 +7,7 @@ SpriteEditorWindow::SpriteEditorWindow(QWidget *parent)
     ui->setupUi(this);
 
     currentTool = pen;
+
 }
 
 SpriteEditorWindow::~SpriteEditorWindow(){
@@ -16,6 +17,14 @@ SpriteEditorWindow::~SpriteEditorWindow(){
 DrawWindow* SpriteEditorWindow::getDrawWindow(){
     return ui->DrawWidget;
 }
+
+SpriteAnimation* SpriteEditorWindow::getAnimationWindow(){
+    return ui->spriteAnimationWidg;
+}
+
+
+
+
 
 void SpriteEditorWindow::processClick(int frameID, int x, int y) {
 
@@ -80,4 +89,3 @@ void SpriteEditorWindow::on_startMenuButton_clicked()
 {
     emit startMenuButtonClicked();
 }
-
