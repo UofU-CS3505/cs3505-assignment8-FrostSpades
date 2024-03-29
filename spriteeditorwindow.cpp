@@ -106,16 +106,18 @@ void SpriteEditorWindow::on_frameSwitcher_valueChanged(int newFrame)
 
 void SpriteEditorWindow::on_deleteCurrentFrame_clicked()
 {
-    int currentFrame = ui->frameSwitcher->value();
+    int currentFrame = ui->frameSwitcher->value() - 1;
+
+    if(ui->frameSwitcher->maximum() != 1){
+        ui->frameSwitcher->setMaximum(ui->frameSwitcher->maximum() - 1);
+    }
 
     if (currentFrame == 0) {
-
-
         emit setCurrentFrame(1);
     }
     else {
-        ui->frameSwitcher->setMaximum(ui->frameSwitcher->maximum() - 1);
-        emit setCurrentFrame(currentFrame - 1);
+        ui->frameSwitcher->setValue(currentFrame);
+        emit setCurrentFrame(currentFrame);
     }
 
     emit deleteCurrentFrame(currentFrame);
