@@ -278,6 +278,9 @@
      <height>120</height>
     </rect>
    </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
    <property name="styleSheet">
     <string notr="true">background::rgb(255, 255, 255);</string>
    </property>
