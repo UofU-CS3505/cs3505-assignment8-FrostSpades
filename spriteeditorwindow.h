@@ -43,6 +43,7 @@ signals:
     void addFrame();
     void deleteCurrentFrame(int frameID);
     void setCurrentFrame(int newFrame);
+    void swapFrames(int leftFrameID, int rightFrameID);
 private slots:
     void on_alphaSpinbox_valueChanged(int arg1);
     void on_greenSpinbox_valueChanged(int arg1);
@@ -58,6 +59,7 @@ private slots:
     void on_deleteCurrentFrame_clicked();
     void on_horizontalSlider_sliderMoved(int position);
     void on_pushButton_clicked();
+    void on_switchFramesButton_clicked();
 };
 
 #endif // SPRITEEDITORWINDOW_H

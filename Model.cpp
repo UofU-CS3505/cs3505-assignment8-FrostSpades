@@ -212,3 +212,23 @@ void Model::notifyView()
 {
     prepareImagesToSend();
 }
+
+void Model::swapFrames(int leftFrameID, int rightFrameID){
+
+    std::cout << "Trying to switch frames" << std::endl;
+    if(leftFrameID != rightFrameID){
+        frames[leftFrameID].swap(frames[rightFrameID]);
+        std::cout << "Switched frames" << std::endl;
+    }
+    prepareImagesToSend();
+}
+
+
+
+
+
+
+
+
+
+

@@ -135,8 +135,9 @@ void SpriteEditorWindow::on_horizontalSlider_sliderMoved(int position)
 }
 
 
-void SpriteEditorWindow::on_pushButton_clicked()
+
+void SpriteEditorWindow::on_switchFramesButton_clicked()
 {
-    // perform frame switching
+    emit swapFrames(ui->leftSwitchSpinbox->value()-1, ui->rightSwitchSpinbox->value()-1);
 }
 

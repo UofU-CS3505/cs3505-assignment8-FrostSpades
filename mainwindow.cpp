@@ -177,6 +177,7 @@ void MainWindow::setModelConnections()
     connect(spriteEditorWindow, &SpriteEditorWindow::sendClick, model, &Model::changeFrame);
     connect(spriteEditorWindow, &SpriteEditorWindow::addFrame, model, &Model::addFrame);
     connect(spriteEditorWindow, &SpriteEditorWindow::deleteCurrentFrame, model, &Model::deleteFrame);
+    connect(spriteEditorWindow, &SpriteEditorWindow::swapFrames, model, &Model::swapFrames);
 }
 
 void MainWindow::onLoadFileSubmit(QString path)
@@ -193,6 +194,14 @@ void MainWindow::onLoadFileSubmit(QString path)
 
 void MainWindow::returnToStartPage()
 {
+    allPages->removeWidget(spriteEditorWindow);
+
     delete model;
+    delete spriteEditorWindow;
+
+    spriteEditorWindow = new SpriteEditorWindow;
+
+    allPages->addWidget(spriteEditorWindow);
+
     openStartupWindow();
 }
