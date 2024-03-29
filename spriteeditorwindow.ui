@@ -365,6 +365,64 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>140</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Frame Switching</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="leftSwitchSpinbox">
+   <property name="geometry">
+    <rect>
+     <x>880</x>
+     <y>170</y>
+     <width>42</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>1</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="rightSwitchSpinbox">
+   <property name="geometry">
+    <rect>
+     <x>960</x>
+     <y>170</y>
+     <width>42</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>1</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="switchFramesButton">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>210</y>
+     <width>91</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Switch Frames</string>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>redSlider</zorder>
   <zorder>blueSlider</zorder>
@@ -387,6 +445,10 @@
   <zorder>label_3</zorder>
   <zorder>deleteCurrentFrame</zorder>
   <zorder>horizontalSlider</zorder>
+  <zorder>label_4</zorder>
+  <zorder>leftSwitchSpinbox</zorder>
+  <zorder>rightSwitchSpinbox</zorder>
+  <zorder>switchFramesButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

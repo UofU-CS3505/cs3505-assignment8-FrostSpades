@@ -205,6 +205,7 @@ void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int 
 void Model::transmitSize()
 {
     emit setSize(size);
+    prepareImagesToSend();
 }
 
 void Model::notifyView()

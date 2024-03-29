@@ -188,6 +188,7 @@ void MainWindow::onLoadFileSubmit(QString path)
     model = new Model(path);
     setModelConnections();
     model->notifyView();
+    model->transmitSize();
 }
 
 void MainWindow::returnToStartPage()
