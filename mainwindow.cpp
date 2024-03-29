@@ -61,6 +61,7 @@ void MainWindow::setConnections()
     connect(spriteEditorWindow, &SpriteEditorWindow::frameSpinBoxChanged, drawWindow, &DrawWindow::changeFrame);
     connect(drawWindow, &DrawWindow::click, spriteEditorWindow, &SpriteEditorWindow::processClick);
     connect(spriteEditorWindow, &SpriteEditorWindow::startMenuButtonClicked, this, &MainWindow::returnToStartPage);
+    connect(spriteEditorWindow, &SpriteEditorWindow::setCurrentFrame, drawWindow, &DrawWindow::changeFrame);
 
     //connect(spriteEditorWindow, &SpriteEditorWindow::updateDelayOfAnimation, &SpriteAnimation::changeDelay());
     //

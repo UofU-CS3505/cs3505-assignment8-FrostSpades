@@ -146,7 +146,21 @@ void Model::addFrame()
 
 void Model::deleteFrame(int id)
 {
+    int framesSize = frames.size();
+
+    // Make it impossible to delete all frames
+    if (framesSize == 1) {
+        return;
+    }
+
     frames.remove(id);
+
+    for (int i = id + 1; i < framesSize; i++) {
+        QImage previousValue = frames[i];
+        frames.remove(i);
+        frames[i - 1] = previousValue;
+    }
+
     prepareImagesToSend();
 }
 

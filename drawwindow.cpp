@@ -78,6 +78,8 @@ void DrawWindow::paintEvent(QPaintEvent *event)
 
 void DrawWindow::changeFrame(int ID) {
     currentFrame = ID;
+
+    update();
 }
 
 void DrawWindow::updateFrames(QMap<int, QImage> incomingFrames) {

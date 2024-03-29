@@ -92,6 +92,8 @@ void SpriteEditorWindow::on_startMenuButton_clicked()
 
 void SpriteEditorWindow::on_addFrameButton_clicked()
 {
+    ui->frameSwitcher->setMaximum(ui->frameSwitcher->maximum() + 1);
+
     emit addFrame();
 }
 
