@@ -89,3 +89,21 @@ void SpriteEditorWindow::on_startMenuButton_clicked()
 {
     emit startMenuButtonClicked();
 }
+
+void SpriteEditorWindow::on_addFrameButton_clicked()
+{
+    emit addFrame();
+}
+
+
+void SpriteEditorWindow::on_frameSwitcher_valueChanged(int newFrame)
+{
+    emit setCurrentFrame(newFrame);
+}
+
+
+void SpriteEditorWindow::on_deleteCurrentFrame_clicked()
+{
+    emit deleteCurrentFrame();
+}
+

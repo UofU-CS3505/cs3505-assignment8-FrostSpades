@@ -39,6 +39,9 @@ signals:
     void saveButtonClicked();
     void updateDelayOfAnimation(int delay);
     void startMenuButtonClicked();
+    void addFrame();
+    void deleteCurrentFrame();
+    void setCurrentFrame(int newFrame);
 private slots:
     void on_alphaSpinbox_valueChanged(int arg1);
     void on_greenSpinbox_valueChanged(int arg1);
@@ -49,6 +52,9 @@ private slots:
     void on_EraseTool_clicked();
     void on_saveButton_clicked();
     void on_startMenuButton_clicked();
+    void on_addFrameButton_clicked();
+    void on_frameSwitcher_valueChanged(int arg1);
+    void on_deleteCurrentFrame_clicked();
 };
 
 #endif // SPRITEEDITORWINDOW_H

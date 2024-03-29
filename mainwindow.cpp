@@ -157,7 +157,7 @@ void MainWindow::setModelConnections()
     // Still need animation window connections
 
     connect(spriteEditorWindow, &SpriteEditorWindow::sendClick, model, &Model::changeFrame);
-
+    connect(spriteEditorWindow, &SpriteEditorWindow::addFrame, model, &Model::addFrame);
 
 }
 
