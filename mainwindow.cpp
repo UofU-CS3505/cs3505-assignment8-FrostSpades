@@ -79,8 +79,10 @@ void MainWindow::setConnections()
             drawWindow,
             &DrawWindow::changeFrame);
 
-    //connect(spriteEditorWindow, &SpriteEditorWindow::updateDelayOfAnimation, &SpriteAnimation::changeDelay());
-    //
+    connect(spriteEditorWindow,
+            &SpriteEditorWindow::animationScaleChange,
+            animationWindow,
+            &SpriteAnimation::changeScale);
 }
 
 void MainWindow::setGlobalPalette()
@@ -182,6 +184,8 @@ void MainWindow::setModelConnections()
     connect(spriteEditorWindow, &SpriteEditorWindow::deleteCurrentFrame, model, &Model::deleteFrame);
     connect(spriteEditorWindow, &SpriteEditorWindow::swapFrames, model, &Model::swapFrames);
     connect(spriteEditorWindow, &SpriteEditorWindow::invertColors, model, &Model::invertColors);
+    connect(spriteEditorWindow, &SpriteEditorWindow::mirrorHorizontal, model, &Model::mirrorHorizon);
+    connect(spriteEditorWindow, &SpriteEditorWindow::mirrorVertical, model, &Model::mirrorVert);
 }
 
 void MainWindow::onLoadFileSubmit(QString path)

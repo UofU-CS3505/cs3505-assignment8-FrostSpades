@@ -145,3 +145,23 @@ void SpriteEditorWindow::on_invertCurrentFrameColors_clicked()
     emit invertColors(ui->frameSwitcher->value()-1);
 }
 
+
+void SpriteEditorWindow::on_animationScale_sliderMoved(int position)
+{
+    emit animationScaleChange(position);
+}
+
+
+void SpriteEditorWindow::on_mirrorHorizontalButton_clicked()
+{
+    int currentFrame = ui->frameSwitcher->value() - 1;
+    emit mirrorHorizontal(currentFrame);
+}
+
+
+void SpriteEditorWindow::on_pushButton_2_clicked()
+{
+    int currentFrame = ui->frameSwitcher->value() - 1;
+    emit mirrorVertical(currentFrame);
+}
+

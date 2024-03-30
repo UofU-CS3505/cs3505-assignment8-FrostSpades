@@ -28,6 +28,7 @@ private:
     QMap<int, QImage> ourFrames;
     int animationDelay;
     QTimer *timer;
+    int scale;
 
     Model *model;
 
@@ -51,6 +52,8 @@ public slots:
     /// \param newDelay the new delay variable.
     ///
     void changeDelay(int newDelay);
+
+    void changeScale(int newScale);
 
     void paint();
 };

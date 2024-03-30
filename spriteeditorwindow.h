@@ -45,6 +45,9 @@ signals:
     void setCurrentFrame(int newFrame);
     void swapFrames(int leftFrameID, int rightFrameID);
     void invertColors(int frameID);
+    void animationScaleChange(int newScale);
+    void mirrorHorizontal(int frameID);
+    void mirrorVertical(int frameID);
 private slots:
     void on_alphaSpinbox_valueChanged(int arg1);
     void on_greenSpinbox_valueChanged(int arg1);
@@ -62,6 +65,9 @@ private slots:
     void on_switchFramesButton_clicked();
     void on_FillTool_clicked();
     void on_invertCurrentFrameColors_clicked();
+    void on_animationScale_sliderMoved(int position);
+    void on_mirrorHorizontalButton_clicked();
+    void on_pushButton_2_clicked();
 };
 
 #endif // SPRITEEDITORWINDOW_H

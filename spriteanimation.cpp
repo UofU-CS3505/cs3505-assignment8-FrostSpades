@@ -4,7 +4,7 @@ SpriteAnimation::SpriteAnimation(QWidget *parent)
     : QWidget(parent)
 {
     animationDelay = 2000;
-
+    scale = 1;
     // Wait for frames
     // Get frames from mainwindow
 
@@ -14,6 +14,11 @@ SpriteAnimation::SpriteAnimation(QWidget *parent)
 
 void SpriteAnimation::startAnimation()
 {
+    int widths = ourFrames.first().width() * scale;
+
+    // Update animation size realistically
+    this->setGeometry(530, 100, widths, widths);
+
     if (!ourFrames.isEmpty())
         timer->start(animationDelay);
 }
@@ -40,15 +45,18 @@ void SpriteAnimation::updateFrames(QMap<int, QImage> frameVector)
         ourFrames.insert(i, frameVector[i]);
     }
 
-    // Update animation size realistically
-    this->setGeometry(530, 100, ourFrames.first().width(), ourFrames.first().width());
-
     startAnimation();
 }
 
 void SpriteAnimation::changeDelay(int newDelay)
 {
     animationDelay = newDelay;
+    startAnimation();
+}
+
+void SpriteAnimation::changeScale(int newScale)
+{
+    scale = newScale;
     startAnimation();
 }
 
