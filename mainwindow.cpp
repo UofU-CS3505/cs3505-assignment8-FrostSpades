@@ -181,6 +181,7 @@ void MainWindow::setModelConnections()
     connect(spriteEditorWindow, &SpriteEditorWindow::addFrame, model, &Model::addFrame);
     connect(spriteEditorWindow, &SpriteEditorWindow::deleteCurrentFrame, model, &Model::deleteFrame);
     connect(spriteEditorWindow, &SpriteEditorWindow::swapFrames, model, &Model::swapFrames);
+    connect(spriteEditorWindow, &SpriteEditorWindow::invertColors, model, &Model::invertColors);
 }
 
 void MainWindow::onLoadFileSubmit(QString path)

@@ -1,5 +1,6 @@
 #include "spriteeditorwindow.h"
 #include "ui_spriteeditorwindow.h"
+#include <iostream>
 
 SpriteEditorWindow::SpriteEditorWindow(QWidget *parent)
     : QWidget(parent)
@@ -137,3 +138,10 @@ void SpriteEditorWindow::on_switchFramesButton_clicked()
 {
     emit swapFrames(ui->leftSwitchSpinbox->value() - 1, ui->rightSwitchSpinbox->value() - 1);
 }
+
+void SpriteEditorWindow::on_invertCurrentFrameColors_clicked()
+{
+    std::cout << "emmiting" << std::endl;
+    emit invertColors(ui->frameSwitcher->value());
+}
+

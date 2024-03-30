@@ -436,6 +436,19 @@
     <string>Fill Tool</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="invertCurrentFrameColors">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>20</y>
+     <width>101</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Invert Colors</string>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>redSlider</zorder>
   <zorder>blueSlider</zorder>
@@ -463,6 +476,7 @@
   <zorder>rightSwitchSpinbox</zorder>
   <zorder>switchFramesButton</zorder>
   <zorder>FillTool</zorder>
+  <zorder>invertCurrentFrameColors</zorder>
  </widget>
  <customwidgets>
   <customwidget>

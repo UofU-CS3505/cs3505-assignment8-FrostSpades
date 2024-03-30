@@ -44,6 +44,7 @@ signals:
     void deleteCurrentFrame(int frameID);
     void setCurrentFrame(int newFrame);
     void swapFrames(int leftFrameID, int rightFrameID);
+    void invertColors(int frameID);
 private slots:
     void on_alphaSpinbox_valueChanged(int arg1);
     void on_greenSpinbox_valueChanged(int arg1);
@@ -60,6 +61,7 @@ private slots:
     void on_horizontalSlider_sliderMoved(int position);
     void on_switchFramesButton_clicked();
     void on_FillTool_clicked();
+    void on_invertCurrentFrameColors_clicked();
 };
 
 #endif // SPRITEEDITORWINDOW_H

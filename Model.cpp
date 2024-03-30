@@ -236,3 +236,9 @@ void Model::swapFrames(int leftFrameID, int rightFrameID)
 bool Model::getIsSaved() {
     return isSaved;
 }
+
+void Model::invertColors(int frameID){
+    frames[frameID].invertPixels();
+    std::cout << "inverting" << std::endl;
+    prepareImagesToSend();
+}

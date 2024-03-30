@@ -158,6 +158,7 @@ public slots:
     void changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int b, int a);
 
     void swapFrames(int leftFrameID, int rightFrameID);
+    void invertColors(int frameID);
 
 signals:
     /**
