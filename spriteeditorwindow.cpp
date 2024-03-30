@@ -142,6 +142,6 @@ void SpriteEditorWindow::on_switchFramesButton_clicked()
 void SpriteEditorWindow::on_invertCurrentFrameColors_clicked()
 {
     std::cout << "emmiting" << std::endl;
-    emit invertColors(ui->frameSwitcher->value());
+    emit invertColors(ui->frameSwitcher->value()-1);
 }
 
