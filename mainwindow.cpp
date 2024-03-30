@@ -21,9 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     openStartupWindow();
 
-    // TEMPORARY, BIPASSES START MENU TEMPORARY!!!!!!!!!
-    //openSpriteEditorWindow();
-
     setConnections();
     setGlobalPalette();
 }
@@ -48,41 +45,24 @@ void MainWindow::setConnections()
     connect(newFileWindow, &NewFileWindow::submitButtonClicked, this, &MainWindow::onNewFileSubmit);
 
     connect(loadFileWindow, &LoadFileWindow::error, this, &MainWindow::showError);
-    connect(loadFileWindow,
-            &LoadFileWindow::cancelButtonClicked,
-            this,
-            &MainWindow::onLoadFileCancel);
-    connect(loadFileWindow,
-            &LoadFileWindow::submitButtonClicked,
-            this,
-            &MainWindow::onLoadFileSubmit);
+    connect(loadFileWindow, &LoadFileWindow::cancelButtonClicked, this, &MainWindow::onLoadFileCancel);
+    connect(loadFileWindow, &LoadFileWindow::submitButtonClicked, this, &MainWindow::onLoadFileSubmit);
 
+    setSpriteEditorConnections();
+}
+
+void MainWindow::setSpriteEditorConnections() {
     DrawWindow *drawWindow = spriteEditorWindow->getDrawWindow();
     SpriteAnimation *animationWindow = spriteEditorWindow->getAnimationWindow();
 
-    connect(spriteEditorWindow,
-            &SpriteEditorWindow::updateDelayOfAnimation,
-            animationWindow,
-            &SpriteAnimation::changeDelay);
+    connect(spriteEditorWindow, &SpriteEditorWindow::updateDelayOfAnimation, animationWindow, &SpriteAnimation::changeDelay);
 
-    connect(spriteEditorWindow,
-            &SpriteEditorWindow::frameSpinBoxChanged,
-            drawWindow,
-            &DrawWindow::changeFrame);
+    connect(spriteEditorWindow, &SpriteEditorWindow::frameSpinBoxChanged, drawWindow, &DrawWindow::changeFrame);
     connect(drawWindow, &DrawWindow::click, spriteEditorWindow, &SpriteEditorWindow::processClick);
-    connect(spriteEditorWindow,
-            &SpriteEditorWindow::startMenuButtonClicked,
-            this,
-            &MainWindow::returnToStartPage);
-    connect(spriteEditorWindow,
-            &SpriteEditorWindow::setCurrentFrame,
-            drawWindow,
-            &DrawWindow::changeFrame);
+    connect(spriteEditorWindow, &SpriteEditorWindow::startMenuButtonClicked, this, &MainWindow::returnToStartPage);
+    connect(spriteEditorWindow, &SpriteEditorWindow::setCurrentFrame, drawWindow, &DrawWindow::changeFrame);
 
-    connect(spriteEditorWindow,
-            &SpriteEditorWindow::animationScaleChange,
-            animationWindow,
-            &SpriteAnimation::changeScale);
+    connect(spriteEditorWindow, &SpriteEditorWindow::animationScaleChange, animationWindow, &SpriteAnimation::changeScale);
 }
 
 void MainWindow::setGlobalPalette()
@@ -146,13 +126,10 @@ void MainWindow::onNewFileSubmit(QString name, int size, QString path)
     newFileWindow->reset();
     newFileWindow->close();
 
-    // TODO: Send data to model
     model = new Model(name, size, path);
     setModelConnections();
     model->transmitSize();
 }
-
-void MainWindow::receiveFrames(QMap<int, QImage> frames) {}
 
 void MainWindow::setModelConnections()
 {
@@ -166,18 +143,13 @@ void MainWindow::setModelConnections()
     connect(this, &MainWindow::reorderFrames, model, &Model::switchFrames);
     connect(this, &MainWindow::saveData, model, &Model::saveModel);
 
-    connect(model, &Model::sendFrames, this, &MainWindow::receiveFrames);
     connect(model, &Model::sendFrames, drawWindow, &DrawWindow::updateFrames);
-    // new connection
     connect(model, &Model::numberOfFrames, spriteEditorWindow, &SpriteEditorWindow::setSpinbox);
-    // new connection
     connect(model, &Model::setSize, drawWindow, &DrawWindow::changePixelSize);
 
     connect(spriteEditorWindow, &SpriteEditorWindow::saveButtonClicked, model, &Model::saveModel);
 
     connect(model, &Model::sendFrames, animationWindow, &SpriteAnimation::updateFrames);
-
-    // Still need animation window connections
 
     connect(spriteEditorWindow, &SpriteEditorWindow::sendClick, model, &Model::changeFrame);
     connect(spriteEditorWindow, &SpriteEditorWindow::addFrame, model, &Model::addFrame);
@@ -202,20 +174,29 @@ void MainWindow::onLoadFileSubmit(QString path)
 
 void MainWindow::returnToStartPage()
 {
-    allPages->removeWidget(spriteEditorWindow);
+    bool isSaved = model->getIsSaved();
+
+    if (!isSaved) {
+        QMessageBox::StandardButton reply
+            = QMessageBox::question(this,
+                                    "Warning: Unsaved Changes",
+                                    "Unsaved Changes: Are you sure you want to exit?",
+                                    QMessageBox::Yes | QMessageBox::No);
+        if (reply != QMessageBox::Yes) {
+            return;
+        }
+    }
 
     delete model;
-    delete spriteEditorWindow;
 
-    spriteEditorWindow = new SpriteEditorWindow;
-
-    allPages->addWidget(spriteEditorWindow);
+    spriteEditorWindow->reset();
 
     openStartupWindow();
 }
 
-void MainWindow::closeEvent(QCloseEvent *event) {
-    if (model == nullptr) {
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (allPages->currentWidget() == startupWindow) {
         event->accept();
         return;
     }
@@ -223,16 +204,17 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     bool isSaved = model->getIsSaved();
 
     if (!isSaved) {
-        QMessageBox::StandardButton reply = QMessageBox::question(this, "Warning: Unsaved Changes", "Unsaved Changes: Are you sure you want to exit?",
-                                                                  QMessageBox::Yes|QMessageBox::No);
+        QMessageBox::StandardButton reply
+            = QMessageBox::question(this,
+                                    "Warning: Unsaved Changes",
+                                    "Unsaved Changes: Are you sure you want to exit?",
+                                    QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::Yes) {
             event->accept();
         } else {
             event->ignore();
         }
-    }
-    else {
+    } else {
         event->accept();
     }
-
 }

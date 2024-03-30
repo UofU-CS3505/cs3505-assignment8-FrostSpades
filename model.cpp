@@ -225,30 +225,35 @@ void Model::notifyView()
 
 void Model::swapFrames(int leftFrameID, int rightFrameID)
 {
-    std::cout << "Trying to switch frames" << std::endl;
     if (leftFrameID != rightFrameID) {
         frames[leftFrameID].swap(frames[rightFrameID]);
-        std::cout << "Switched frames" << std::endl;
     }
     prepareImagesToSend();
 }
 
-bool Model::getIsSaved() {
+bool Model::getIsSaved()
+{
     return isSaved;
 }
 
-void Model::invertColors(int frameID){
+void Model::invertColors(int frameID)
+{
     frames[frameID].invertPixels();
-    std::cout << "inverting" << std::endl;
     prepareImagesToSend();
 }
 
-void Model::mirrorHorizon(int frameID){
-    frames[frameID].mirror(true,false);
+void Model::mirrorHorizon(int frameID)
+{
+    frames[frameID].mirror(true, false);
     prepareImagesToSend();
 }
 
-void Model::mirrorVert(int frameID){
+void Model::mirrorVert(int frameID)
+{
     frames[frameID].mirror();
     prepareImagesToSend();
+}
+
+void Model::setSaved(bool value) {
+    isSaved = value;
 }

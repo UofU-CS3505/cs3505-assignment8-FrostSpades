@@ -27,6 +27,8 @@ public:
     DrawWindow *getDrawWindow();
     SpriteAnimation *getAnimationWindow();
 
+    void reset();
+
 private:
     Ui::SpriteEditorWindow *ui;
     Tool currentTool;

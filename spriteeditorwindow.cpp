@@ -16,6 +16,33 @@ SpriteEditorWindow::~SpriteEditorWindow()
     delete ui;
 }
 
+void SpriteEditorWindow::reset() {
+    ui->PenTool->setChecked(true);
+    ui->EraseTool->setChecked(false);
+    ui->FillTool->setChecked(false);
+    ui->redSlider->setValue(255);
+    ui->greenSlider->setValue(255);
+    ui->blueSlider->setValue(255);
+    ui->alphaSlider->setValue(255);
+    ui->redSpinbox->setValue(255);
+    ui->blueSpinbox->setValue(255);
+    ui->greenSpinbox->setValue(255);
+    ui->alphaSpinbox->setValue(255);
+    updatePreviewColor();
+    ui->animationScale->setValue(1);
+    emit animationScaleChange(1);
+    ui->horizontalSlider->setValue(2000);
+    emit updateDelayOfAnimation(2000);
+    ui->frameSwitcher->setValue(1);
+    emit setCurrentFrame(1);
+    ui->frameSwitcher->setMaximum(1);
+    ui->leftSwitchSpinbox->setMaximum(1);
+    ui->leftSwitchSpinbox->setValue(1);
+    ui->rightSwitchSpinbox->setMaximum(1);
+    ui->rightSwitchSpinbox->setValue(1);
+}
+
+
 DrawWindow *SpriteEditorWindow::getDrawWindow()
 {
     return ui->DrawWidget;
@@ -142,15 +169,13 @@ void SpriteEditorWindow::on_switchFramesButton_clicked()
 void SpriteEditorWindow::on_invertCurrentFrameColors_clicked()
 {
     std::cout << "emmiting" << std::endl;
-    emit invertColors(ui->frameSwitcher->value()-1);
+    emit invertColors(ui->frameSwitcher->value() - 1);
 }
-
 
 void SpriteEditorWindow::on_animationScale_sliderMoved(int position)
 {
     emit animationScaleChange(position);
 }
-
 
 void SpriteEditorWindow::on_mirrorHorizontalButton_clicked()
 {
@@ -158,10 +183,8 @@ void SpriteEditorWindow::on_mirrorHorizontalButton_clicked()
     emit mirrorHorizontal(currentFrame);
 }
 
-
 void SpriteEditorWindow::on_pushButton_2_clicked()
 {
     int currentFrame = ui->frameSwitcher->value() - 1;
     emit mirrorVertical(currentFrame);
 }
-

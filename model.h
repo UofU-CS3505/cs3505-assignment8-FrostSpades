@@ -98,6 +98,8 @@ public:
 
     bool getIsSaved();
 
+    void setSaved(bool value);
+
 public slots:
     /**
      * @brief addFrame

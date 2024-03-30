@@ -88,8 +88,6 @@ public slots:
      */
     void onLoadFileSubmit(QString path);
 
-    void receiveFrames(QMap<int, QImage> frames);
-
     // tells the view to return to start page
     void returnToStartPage();
 
@@ -128,6 +126,8 @@ private:
     void setGlobalPalette();
 
     void setModelConnections();
+
+    void setSpriteEditorConnections();
 
 signals:
     void addFrame();
