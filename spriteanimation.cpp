@@ -1,8 +1,7 @@
 #include "spriteanimation.h"
 
 SpriteAnimation::SpriteAnimation(QWidget *parent)
-    : QWidget(parent)
-{
+    : QWidget(parent){
     animationDelay = 2000;
     scale = 1;
     // Wait for frames
@@ -12,8 +11,7 @@ SpriteAnimation::SpriteAnimation(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(paint()));
 }
 
-void SpriteAnimation::startAnimation()
-{
+void SpriteAnimation::startAnimation(){
     int widths = ourFrames.first().width() * scale;
 
     // Update animation size realistically
@@ -23,14 +21,12 @@ void SpriteAnimation::startAnimation()
         timer->start(animationDelay);
 }
 
-void SpriteAnimation::paintEvent(QPaintEvent *event)
-{
+void SpriteAnimation::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     painter.drawImage(rect(), ourFrames[currentIndex].scaled(QSize(32, 32)));
 }
 
-QImage SpriteAnimation::currentFrame() const
-{
+QImage SpriteAnimation::currentFrame() const{
     auto it = ourFrames.find(currentIndex);
     if (it != ourFrames.end())
         return it.value();
@@ -39,27 +35,22 @@ QImage SpriteAnimation::currentFrame() const
 }
 
 // Slots
-void SpriteAnimation::updateFrames(QMap<int, QImage> frameVector)
-{
+void SpriteAnimation::updateFrames(QMap<int, QImage> frameVector){
     ourFrames = frameVector;
-
     startAnimation();
 }
 
-void SpriteAnimation::changeDelay(int newDelay)
-{
+void SpriteAnimation::changeDelay(int newDelay){
     animationDelay = newDelay;
     startAnimation();
 }
 
-void SpriteAnimation::changeScale(int newScale)
-{
+void SpriteAnimation::changeScale(int newScale){
     scale = newScale;
     startAnimation();
 }
 
-void SpriteAnimation::paint()
-{
+void SpriteAnimation::paint(){
     currentIndex = (currentIndex + 1) % ourFrames.size();
     update(); // Trigger repaint
 }

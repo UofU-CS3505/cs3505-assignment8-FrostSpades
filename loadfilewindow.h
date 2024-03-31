@@ -3,6 +3,7 @@
  * Has user input a path to load a file.
  *
  * @author Ethan Andrews
+ * @reviewer Vasil Vassilev
 */
 #ifndef LOADFILEWINDOW_H
 #define LOADFILEWINDOW_H
@@ -18,9 +19,18 @@ class LoadFileWindow : public QDialog
     Q_OBJECT
 
 public:
+    /**
+     * @brief LoadFileWindow constructor for loadFileWindow Dialog box
+     * @param parent
+     */
     explicit LoadFileWindow(QWidget *parent = nullptr);
+    /**
+     * @brief destructor for loadFileWindow QDialog box
+     */
     ~LoadFileWindow();
-
+    /**
+     * @brief reset textPath of the QDialog box
+     */
     void reset();
 
 private slots:
@@ -44,6 +54,9 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
+    /**
+     * @brief pointer to the ui
+     */
     Ui::LoadFileWindow *ui;
 
 signals:

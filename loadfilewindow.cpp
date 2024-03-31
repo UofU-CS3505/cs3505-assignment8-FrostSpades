@@ -4,18 +4,15 @@
 
 LoadFileWindow::LoadFileWindow(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::LoadFileWindow)
-{
+    , ui(new Ui::LoadFileWindow){
     ui->setupUi(this);
 }
 
-LoadFileWindow::~LoadFileWindow()
-{
+LoadFileWindow::~LoadFileWindow(){
     delete ui;
 }
 
-void LoadFileWindow::on_sourceButton_clicked()
-{
+void LoadFileWindow::on_sourceButton_clicked(){
     QString fileFilter = "SSP files (*.ssp)";
 
     QString fileName = QFileDialog::getOpenFileName(nullptr, "Directory Selection", "", fileFilter);
@@ -23,8 +20,7 @@ void LoadFileWindow::on_sourceButton_clicked()
     ui->textPath->setText(fileName);
 }
 
-void LoadFileWindow::on_submitButton_clicked()
-{
+void LoadFileWindow::on_submitButton_clicked(){
     if (ui->textPath->displayText() == QString("")) {
         emit error(QString("Path cannot be empty"));
         return;
@@ -33,12 +29,10 @@ void LoadFileWindow::on_submitButton_clicked()
     emit submitButtonClicked(ui->textPath->displayText());
 }
 
-void LoadFileWindow::on_cancelButton_clicked()
-{
+void LoadFileWindow::on_cancelButton_clicked(){
     emit cancelButtonClicked();
 }
 
-void LoadFileWindow::reset()
-{
+void LoadFileWindow::reset(){
     ui->textPath->setText(QString(""));
 }
