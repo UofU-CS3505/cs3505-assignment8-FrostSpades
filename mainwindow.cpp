@@ -90,7 +90,7 @@ void MainWindow::openStartupWindow()
 void MainWindow::openSpriteEditorWindow()
 {
     allPages->setCurrentWidget(spriteEditorWindow);
-    this->setGeometry(450, 100, 1100, 700);
+    this->setGeometry(450, 100, 1041, 618);
 }
 
 void MainWindow::openNewFileWindow()

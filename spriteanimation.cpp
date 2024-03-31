@@ -17,7 +17,7 @@ void SpriteAnimation::startAnimation()
     int widths = ourFrames.first().width() * scale;
 
     // Update animation size realistically
-    this->setGeometry(530, 100, widths, widths);
+    this->setGeometry(880, 60, widths, widths);
 
     if (!ourFrames.isEmpty())
         timer->start(animationDelay);
