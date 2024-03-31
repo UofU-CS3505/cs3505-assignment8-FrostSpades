@@ -1,3 +1,10 @@
+/*  spriteeditorwindow.cpp
+ *
+ *  slots and signals for ui
+ *
+ */
+
+
 #include "spriteeditorwindow.h"
 #include "ui_spriteeditorwindow.h"
 #include <iostream>
@@ -63,22 +70,22 @@ void SpriteEditorWindow::processClick(int frameID, int x, int y)
     emit sendClick(currentTool, frameID, x, y, red, green, blue, alpha);
 }
 
-void SpriteEditorWindow::on_alphaSpinbox_valueChanged(int arg1)
+void SpriteEditorWindow::on_alphaSpinbox_valueChanged()
 {
     updatePreviewColor();
 }
 
-void SpriteEditorWindow::on_greenSpinbox_valueChanged(int arg1)
+void SpriteEditorWindow::on_greenSpinbox_valueChanged()
 {
     updatePreviewColor();
 }
 
-void SpriteEditorWindow::on_blueSpinbox_valueChanged(int arg1)
+void SpriteEditorWindow::on_blueSpinbox_valueChanged()
 {
     updatePreviewColor();
 }
 
-void SpriteEditorWindow::on_redSpinbox_valueChanged(int arg1)
+void SpriteEditorWindow::on_redSpinbox_valueChanged()
 {
     updatePreviewColor();
 }
@@ -183,8 +190,9 @@ void SpriteEditorWindow::on_mirrorHorizontalButton_clicked()
     emit mirrorHorizontal(currentFrame);
 }
 
-void SpriteEditorWindow::on_pushButton_2_clicked()
+void SpriteEditorWindow::on_mirrorVerticalButton_clicked()
 {
     int currentFrame = ui->frameSwitcher->value() - 1;
     emit mirrorVertical(currentFrame);
 }
+
