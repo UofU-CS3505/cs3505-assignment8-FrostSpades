@@ -1,12 +1,15 @@
-/// Model Serializer, Deserializer, cpp
-/// By Joshua Brody, Jacob Xu
-/// CS 3505 Assignment 7-8 Sprite Editor
-/// 3/2024
-///
+/**
+ * Model Serializer, Deserializer, cpp
+ * @authors Joshua Brody and Jacob Xu
+ * CS 3505 Assignment 7-8 Sprite Editor
+ * @date 3/2024
+ *
+ * Reviewer: Ethan Andrews
+ */
 
 #include "Model.h"
 #include <iostream>
-// Constructor
+
 Model::Model(QObject *parent)
     : QObject(parent)
 {
@@ -19,7 +22,9 @@ Model::Model()
     addFrame();
 }
 
-Model::~Model() {}
+Model::~Model() {
+
+}
 
 // The user wants to create a project from scratch. An empty project is created into a Json and aded to filePath.
 Model::Model(QString name, int thisSize, QString filePath)
@@ -52,7 +57,7 @@ Model::Model(QString name, int thisSize, QString filePath)
     saveModel();
 
     // TODO: send open empty frame to view
-    prepareImagesToSend();
+    sendImages();
 }
 
 // The user wants to load a previous project. The project is saved in a Json at that filePath.
@@ -90,7 +95,7 @@ Model::Model(QString &filePath)
     file.close();
 
     // TODO: Open frames to view
-    prepareImagesToSend();
+    sendImages();
 }
 
 // The user wants to save the current project state. Update the json.
@@ -146,7 +151,7 @@ void Model::addFrame()
     // frames.count is one bigger than the index of the last frame because the first frame has id of 0
     frames.insert(frames.count(), newFrame);
 
-    prepareImagesToSend();
+    sendImages();
 }
 
 void Model::deleteFrame(int id)
@@ -166,18 +171,18 @@ void Model::deleteFrame(int id)
         frames[i - 1] = previousValue;
     }
 
-    prepareImagesToSend();
+    sendImages();
 }
 
 void Model::changePixelData(int id, int x, int y, int r, int g, int b, int a)
 {
     frames[id].setPixel(x, y, qRgba(r, g, b, a));
-    prepareImagesToSend();
+    sendImages();
 }
 
 void Model::returnFrames()
 {
-    prepareImagesToSend();
+    sendImages();
 }
 
 void Model::switchFrames(int frameOneID, int frameTwoID)
@@ -186,13 +191,12 @@ void Model::switchFrames(int frameOneID, int frameTwoID)
     frames[frameOneID] = frames[frameTwoID];
     frames[frameTwoID] = saveSwitchingFrame;
 
-    prepareImagesToSend();
+    sendImages();
 }
 
-// Helper method
-void Model::prepareImagesToSend()
+void Model::sendImages()
 {
-    emit numberOfFrames(frames.count());
+    emit sendNumberOfFrames(frames.count());
     emit sendFrames(frames);
 
     isSaved = false;
@@ -208,19 +212,19 @@ void Model::changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int 
     }
     if (tool == Tool::fillTool) {
         frames[frameID].fill(QColor::fromRgba(qRgba(r, g, b, a)));
-        prepareImagesToSend();
+        sendImages();
     }
 }
 
 void Model::transmitSize()
 {
-    emit setSize(size);
-    prepareImagesToSend();
+    emit sendSize(size);
+    sendImages();
 }
 
 void Model::notifyView()
 {
-    prepareImagesToSend();
+    sendImages();
 }
 
 void Model::swapFrames(int leftFrameID, int rightFrameID)
@@ -228,7 +232,7 @@ void Model::swapFrames(int leftFrameID, int rightFrameID)
     if (leftFrameID != rightFrameID) {
         frames[leftFrameID].swap(frames[rightFrameID]);
     }
-    prepareImagesToSend();
+    sendImages();
 }
 
 bool Model::getIsSaved()
@@ -239,19 +243,19 @@ bool Model::getIsSaved()
 void Model::invertColors(int frameID)
 {
     frames[frameID].invertPixels();
-    prepareImagesToSend();
+    sendImages();
 }
 
-void Model::mirrorHorizon(int frameID)
+void Model::mirrorHorizontal(int frameID)
 {
     frames[frameID].mirror(true, false);
-    prepareImagesToSend();
+    sendImages();
 }
 
-void Model::mirrorVert(int frameID)
+void Model::mirrorVertical(int frameID)
 {
     frames[frameID].mirror();
-    prepareImagesToSend();
+    sendImages();
 }
 
 void Model::setSaved(bool value) {

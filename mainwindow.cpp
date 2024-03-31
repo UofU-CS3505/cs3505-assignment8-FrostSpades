@@ -144,8 +144,8 @@ void MainWindow::setModelConnections()
     connect(this, &MainWindow::saveData, model, &Model::saveModel);
 
     connect(model, &Model::sendFrames, drawWindow, &DrawWindow::updateFrames);
-    connect(model, &Model::numberOfFrames, spriteEditorWindow, &SpriteEditorWindow::setSpinbox);
-    connect(model, &Model::setSize, drawWindow, &DrawWindow::changePixelSize);
+    connect(model, &Model::sendNumberOfFrames, spriteEditorWindow, &SpriteEditorWindow::setSpinbox);
+    connect(model, &Model::sendSize, drawWindow, &DrawWindow::changePixelSize);
 
     connect(spriteEditorWindow, &SpriteEditorWindow::saveButtonClicked, model, &Model::saveModel);
 
@@ -156,8 +156,8 @@ void MainWindow::setModelConnections()
     connect(spriteEditorWindow, &SpriteEditorWindow::deleteCurrentFrame, model, &Model::deleteFrame);
     connect(spriteEditorWindow, &SpriteEditorWindow::swapFrames, model, &Model::swapFrames);
     connect(spriteEditorWindow, &SpriteEditorWindow::invertColors, model, &Model::invertColors);
-    connect(spriteEditorWindow, &SpriteEditorWindow::mirrorHorizontal, model, &Model::mirrorHorizon);
-    connect(spriteEditorWindow, &SpriteEditorWindow::mirrorVertical, model, &Model::mirrorVert);
+    connect(spriteEditorWindow, &SpriteEditorWindow::mirrorHorizontal, model, &Model::mirrorHorizontal);
+    connect(spriteEditorWindow, &SpriteEditorWindow::mirrorVertical, model, &Model::mirrorVertical);
 }
 
 void MainWindow::onLoadFileSubmit(QString path)

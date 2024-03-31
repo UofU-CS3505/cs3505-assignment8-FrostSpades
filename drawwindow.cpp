@@ -1,3 +1,9 @@
+/**
+ * Implementation of draw window class.
+ *
+ * Reviewer: Ethan Andrews
+ */
+
 #include "drawwindow.h"
 #include <iostream>
 
@@ -16,8 +22,6 @@ DrawWindow::DrawWindow(QWidget *parent)
 
 void DrawWindow::changePixelSize(int newSize)
 {
-    // NOTE:
-    // Size works as non multiples of two
     size = newSize;
     image = QImage(size, size, QImage::Format_ARGB32);
     image.fill(Qt::transparent);

@@ -1,8 +1,11 @@
-/// Model Serializer, Deserializer, header
-/// By Joshua Brody, Jacob Xu
-/// CS 3505 Assignment 7-8 Sprite Editor
-/// 3/2024
-///
+/**
+ * Model Serializer, Deserializer, header
+ * @authors Joshua Brody, Jacob Xu
+ * CS 3505 Assignment 7-8 Sprite Editor
+ * @date 3/2024
+ *
+ * Reviewer: Ethan Andrews
+ **/
 
 #ifndef MODEL_H
 #define MODEL_H
@@ -24,44 +27,42 @@ class Model : public QObject
     Q_OBJECT
 
 private:
-    ///
-    /// \brief size it stores the width/height of the squared canvas
-    /// When the user creates a project they are offered a choice on resolution. That choice is stored here for QImage settings
-    ///
-    int size;
+    int size; // the width/height of the squared canvas
 
-    bool isSaved;
+    bool isSaved; // bool representing if the newest changes have been saved
 
-    ///
-    /// \brief frames is a map from the key (which is the id of the QImage) to a QImage.
-    ///
-    QMap<int, QImage> frames;
+    QMap<int, QImage> frames; // map from the key (which is the id of the QImage) to a QImage.
 
-    ///
-    /// \brief saveFilePath just stores where the user would to save.
-    ///
-    QString saveFilePath;
+    QString saveFilePath; // stores the save path
 
-    ///
-    /// \brief imageToBase64 helper method for loading images to json
-    /// \param image    the image that wants to be saved
-    /// \return     json serialized version of that image.
-    ///
+    /**
+     * @brief imageToBase64 helper method for loading images to json
+     * @param image the image that wants to be saved
+     * @return json serialized version of that image.
+     */
     QString imageToBase64(const QImage &image);
 
-    ///
-    /// \brief base64ToImage helper method for loading QImages from json.
-    /// \param base64   the json serialization part of an image
-    /// \return     The QImage of the serialization.
-    ///
+    /**
+     * @brief base64ToImage helper method for loading QImages from json.
+     * @param base64 the json serialization part of an image
+     * @return The QImage of the serialization.
+     */
     QImage base64ToImage(const QString &base64);
 
-    void prepareImagesToSend();
+    /**
+     * @brief sendImages starts the process of sending the images
+     */
+    void sendImages();
 
 public:
+    /**
+     * @brief Model
+     * Qt constructor
+     * @param parent
+     */
     explicit Model(QObject *parent = nullptr);
 
-    /*
+    /**
      * @brief Model
      * Default Constructor
      */
@@ -92,12 +93,33 @@ public:
      */
     ~Model();
 
+    /**
+     * @brief transmitSize
+     * Sends the size to connected
+     * components.
+     */
     void transmitSize();
 
+    /**
+     * @brief notifyView
+     * Notifies the view of the current
+     * frames.
+     */
     void notifyView();
 
+    /**
+     * @brief getIsSaved
+     * Returns if there are unsaved changes
+     * @return true if saved all changes
+     */
     bool getIsSaved();
 
+    /**
+     * @brief setSaved
+     * Sets the isSaved value
+     *
+     * @param value the new isSaved value
+     */
     void setSaved(bool value);
 
 public slots:
@@ -157,25 +179,84 @@ public slots:
      */
     void saveModel();
 
+    /**
+     * @brief changeFrame
+     * Changes the frame corresponding to the data
+     * in the parameters.
+     * @param tool the tool that was used to change the frame
+     * @param frameID the ID of the frame to be changed
+     * @param x the x position of the change
+     * @param y the y position of the change
+     * @param r the red value of the tool
+     * @param g the green value of the tool
+     * @param b the blue value of the tool
+     * @param a the alpha value of the tool
+     */
     void changeFrame(Tool tool, int frameID, int x, int y, int r, int g, int b, int a);
 
+    /**
+     * @brief swapFrames
+     * Swaps the frames at leftFrameID
+     * and rightFrameID
+     * @param leftFrameID the first frame to swap
+     * @param rightFrameID the second frame to swap
+     */
     void swapFrames(int leftFrameID, int rightFrameID);
+
+    /**
+     * @brief invertColors
+     * Inverts the pixel colors of the frame
+     * at frameID
+     *
+     * @param frameID the ID of the frame
+     */
     void invertColors(int frameID);
 
-    void mirrorHorizon(int frameID);
-    void mirrorVert(int frameID);
+    /**
+     * @brief mirrorHorizontal
+     * Mirrors the frame in the horizontal
+     * direction.
+     *
+     * @param frameID the id of the frame
+     * to be mirrored
+     */
+    void mirrorHorizontal(int frameID);
+
+    /**
+     * @brief mirrorVertical
+     * Mirrors the frame in the vertical
+     * direction.
+     *
+     * @param frameID the id of the frame
+     * to be mirrored
+     */
+    void mirrorVertical(int frameID);
 
 signals:
     /**
      * @brief sendFrames
-     * Send array of frames to view
+     * Send frames to view
      *
-     * @param frames the array of frames to send
+     * @param frames the frames to send
      */
     void sendFrames(QMap<int, QImage> frames);
 
-    void setSize(int size);
-    void numberOfFrames(int numberOfFrames);
+    /**
+     * @brief sendSize
+     * Sends size to view
+     *
+     * @param size
+     */
+    void sendSize(int size);
+
+    /**
+     * @brief sendNumberOfFrames
+     * Sends the number of frames to
+     * view.
+     *
+     * @param numberOfFrames
+     */
+    void sendNumberOfFrames(int numberOfFrames);
 };
 
 #endif // MODEL_H
