@@ -4,6 +4,7 @@
  * a new project.
  *
  * @author Ethan Andrews
+ * reviewed by Jacob Xu
 */
 
 #ifndef NEWFILEWINDOW_H
@@ -20,7 +21,15 @@ class NewFileWindow : public QDialog
     Q_OBJECT
 
 public:
+    /**
+     * @brief NewFileWindow new file window constructor
+     * @param parent QWidget parent
+     */
     explicit NewFileWindow(QWidget *parent = nullptr);
+
+    /**
+     * @brief NewFileWindow new file window deconstructor
+     */
     ~NewFileWindow();
 
     /**
@@ -50,7 +59,7 @@ private slots:
     void on_pushButton_2_clicked();
 
 private:
-    Ui::NewFileWindow *ui;
+    Ui::NewFileWindow *ui; //the ui of NewFileWindow
 
 signals:
     /**

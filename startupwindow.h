@@ -4,6 +4,7 @@
  * or load a previous project.
  *
  * @author Ethan Andrews
+ * reviewed by Jacob Xu
 */
 
 #ifndef STARTUPWINDOW_H
@@ -20,7 +21,15 @@ class StartupWindow : public QWidget
     Q_OBJECT
 
 public:
+    /**
+     * @brief StartupWindow start up window constructor
+     * @param parent QWidget parent
+     */
     explicit StartupWindow(QWidget *parent = nullptr);
+
+    /**
+     * @brief StartupWindow start up window deconstructor
+     */
     ~StartupWindow();
 
 private slots:
@@ -37,7 +46,7 @@ private slots:
     void on_loadButton_clicked();
 
 private:
-    Ui::StartupWindow *ui;
+    Ui::StartupWindow *ui; //the ui of StartupWindow
 
 signals:
     /**
