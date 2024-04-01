@@ -762,7 +762,7 @@ color: rgb(230, 230, 230);</string>
     <number>1</number>
    </property>
    <property name="maximum">
-    <number>16</number>
+    <number>4</number>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
