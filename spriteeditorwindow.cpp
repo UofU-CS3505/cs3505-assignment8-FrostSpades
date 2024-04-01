@@ -196,3 +196,4 @@ void SpriteEditorWindow::on_mirrorVerticalButton_clicked()
     emit mirrorVertical(currentFrame);
 }
 
+

@@ -254,7 +254,7 @@ void Model::mirrorHorizontal(int frameID)
 
 void Model::mirrorVertical(int frameID)
 {
-    frames[frameID].mirror();
+    frames[frameID].mirror(false, true);
     sendImages();
 }
 

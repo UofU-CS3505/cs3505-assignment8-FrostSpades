@@ -3096,7 +3096,7 @@ color: rgb(230, 230, 230);</string>
     <string>Mirror Horizontal</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="mirrorVerticalButton">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -3279,7 +3279,7 @@ color: rgb(200, 200, 200)</string>
   <zorder>label_8</zorder>
   <zorder>label_9</zorder>
   <zorder>mirrorHorizontalButton</zorder>
-  <zorder>pushButton_2</zorder>
+  <zorder>mirrorVerticalButton</zorder>
   <zorder>label_13</zorder>
   <zorder>label_14</zorder>
   <zorder>label_12</zorder>

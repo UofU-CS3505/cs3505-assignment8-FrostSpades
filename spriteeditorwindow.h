@@ -254,6 +254,7 @@ private slots:
     /// \brief on_mirrorVerticalButton_clicked  emit signal to animation
     ///
     void on_mirrorVerticalButton_clicked();
+    void on_pushButton_2_clicked();
 };
 
 #endif // SPRITEEDITORWINDOW_H
